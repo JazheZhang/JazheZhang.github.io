@@ -156,7 +156,6 @@
 
     .contact-inner h2 { margin-bottom: 1rem; position: relative; }
     .contact-inner > p { color: var(--muted); max-width: 420px; margin: 0 auto 0.5rem; position: relative; }
-    .contact-email-display { font-family: 'Syne', sans-serif; font-size: 0.9rem; color: var(--accent); margin-bottom: 2rem; position: relative; letter-spacing: 0.02em; }
     .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
 
     /* ── BUTTONS ── */
@@ -386,9 +385,8 @@
       <p class="section-label">Say hello</p>
       <h2>Let's Work Together</h2>
       <p>I'm open to internships, collaborations, and conversations about design, tech, and product.</p>
-      <div class="contact-email-display"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="de9fa4b6bbb4bfbdb59eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></div>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#a8e9d2c0cdc2c9cbc3e8cfc5c9c1c486cbc7c5" class="btn btn-primary">Email Me →</a>
+        <a href="mailto:Azhejack@gmail.com" class="btn btn-primary" id="emailBtn">Email Me →</a>
         <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn →</a>
         <a href="https://github.com/JazheZhang" target="_blank" rel="noopener" class="btn btn-primary">GitHub →</a>
       </div>
@@ -486,4 +484,12 @@
     // Toast
     const toastEl = document.getElementById('toast');
     let toastTimer;
-    function showToast(msg) { toastEl.textContent = m
+    function showToast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200); }
+    window.addEventListener('load', () => {
+      setTimeout(() => showToast("Welcome to Jack's portfolio"), 900);
+      const e = document.getElementById('emailBtn');
+      if (e) e.setAttribute('href', 'mailto:' + 'Azhejack' + '@' + 'gmail.com');
+    });
+  </script>
+</body>
+</html>
