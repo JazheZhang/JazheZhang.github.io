@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Squirl Signs · Jack Zhang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #faf8f4; --surface: #ffffff; --border: #e8e3d8; --accent: #d4773a; --accent2: #e8a265; --text: #1c1a17; --muted: #706a5e; --card: #ffffff; --nav-bg: rgba(250,248,244,0.93); --shadow: rgba(212,119,58,0.15); }
+    body.dark { --bg: #0e0f0d; --surface: #151714; --border: #252820; --accent: #e8895a; --accent2: #f0b47a; --text: #eeedea; --muted: #a8a49c; --card: #131510; --nav-bg: rgba(14,15,13,0.93); }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: var(--nav-bg); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-back:hover { color: var(--accent); }
+    .theme-toggle { background: var(--surface); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+
+    .case-hero { padding: 10rem 4rem 5rem; max-width: 900px; margin: 0 auto; }
+    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212,119,58,0.09); border: 1px solid rgba(212,119,58,0.22); color: var(--accent); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
+    .case-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; color: var(--text); }
+    .case-hero .subtitle { font-size: 1.15rem; color: var(--muted); max-width: 620px; margin-bottom: 2.5rem; }
+    .case-hero .subtitle strong { color: var(--text); font-weight: 500; }
+
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 2.5rem; padding: 1.5rem 2rem; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 4rem; }
+    .meta-item { }
+    .meta-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
+    .meta-value { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.95rem; color: var(--text); }
+
+    .case-body { max-width: 900px; margin: 0 auto; padding: 0 4rem 6rem; }
+    .case-section { margin-bottom: 4rem; }
+    .case-section h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; margin-bottom: 1.25rem; color: var(--text); }
+    .case-section p { color: var(--muted); margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.75; }
+    .case-section p strong { color: var(--text); font-weight: 500; }
+
+    .highlight-box { background: rgba(212,119,58,0.06); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.7; }
+
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .process-step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
+    .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--accent); opacity: 0.4; margin-bottom: 0.5rem; }
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text); margin-bottom: 0.35rem; }
+    .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .metric-card .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); letter-spacing: -0.04em; }
+    .metric-card .lbl { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+    .decision-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+    .decision-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; }
+    .decision-card p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .tag { background: var(--surface); border: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; padding: 0.3rem 0.8rem; border-radius: 6px; }
+
+    .nav-projects { display: flex; justify-content: space-between; align-items: center; padding: 2rem 4rem; border-top: 1px solid var(--border); max-width: 900px; margin: 0 auto; }
+    .nav-projects a { color: var(--accent); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.2s; }
+    .nav-projects a:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .metrics-row { grid-template-columns: 1fr 1fr; }
+      .nav-projects { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Jack<span>.</span></a>
+    <a href="index.html#projects" class="nav-back">← Back to projects</a>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+  </nav>
+
+  <div class="case-hero">
+    <div class="case-tag">Accessibility Case Competition</div>
+    <h1>Squirl Signs · ASL Translation App</h1>
+    <p class="subtitle">Designing a <strong>mobile-first communication platform</strong> for deaf and hard-of-hearing users. Led research strategy and product narrative for a startup targeting a largely underserved Canadian market.</p>
+
+    <div class="meta-bar">
+      <div class="meta-item"><div class="meta-label">My Role</div><div class="meta-value">Research Lead · Product Strategy</div></div>
+      <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Accessibility Case Competition</div></div>
+      <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma · Competitive Analysis</div></div>
+      <div class="meta-item"><div class="meta-label">Market</div><div class="meta-value">430K+ Canadians</div></div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <div class="case-section">
+      <h2>The Problem</h2>
+      <p>Over <strong>430,000 Canadians</strong> are deaf or hard-of-hearing. The existing tools for real-time communication are fragmented: some require the other person to already know ASL, others are clunky text-based solutions that break natural conversation flow. No single product addressed all three user types that exist in this space: fully Deaf users, hard-of-hearing users, and hearing users communicating with them.</p>
+      <div class="highlight-box">"If a product forces a Deaf person to change how they communicate to fit the app, the app has already failed them."</div>
+    </div>
+
+    <div class="case-section">
+      <h2>Market Opportunity</h2>
+      <div class="metrics-row">
+        <div class="metric-card"><div class="val">430K+</div><div class="lbl">Deaf or hard-of-hearing Canadians</div></div>
+        <div class="metric-card"><div class="val">3</div><div class="lbl">Distinct user segments with different needs</div></div>
+        <div class="metric-card"><div class="val">D2C</div><div class="lbl">Direct consumer app with potential B2B accessibility licensing</div></div>
+      </div>
+      <p>Existing ASL apps serve a narrow slice of this market. Most assume the user already knows sign language. <strong>Squirl Signs targets the communication gap itself</strong>, not just one side of the conversation. This positions the product as a platform play, not just an accessibility tool.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Our Research Process</h2>
+      <p>We didn't have direct access to deaf or hard-of-hearing users. The project ran during exam season with a one-week timeline, which made recruiting community members impossible. We were transparent about that constraint and designed our research approach around what we could actually do.</p>
+      <div class="process-steps">
+        <div class="process-step"><div class="step-num">01</div><div class="step-title">Competitive Analysis</div><div class="step-desc">Audited existing ASL apps, captioning tools, and hearing-aid companion apps. The single biggest gap: no existing product handled all three user types in one unified flow.</div></div>
+        <div class="process-step"><div class="step-num">02</div><div class="step-title">Empathy Experiment</div><div class="step-desc">Wore noise-cancelling headphones in a busy public environment to experience communication barriers firsthand. Not a substitute for real user research — but it gave us directional insight that shaped every design decision after it.</div></div>
+        <div class="process-step"><div class="step-num">03</div><div class="step-title">Community Research</div><div class="step-desc">Watched videos and read content from deaf creators and advocates to understand how the community talks about existing tools, what frustrates them, and what they actually want from technology.</div></div>
+        <div class="process-step"><div class="step-num">04</div><div class="step-title">User Segmentation</div><div class="step-desc">Defined three distinct profiles: fully Deaf, hard-of-hearing, and hearing allies. Each has different onboarding needs, trust thresholds, and feature priorities.</div></div>
+      </div>
+      <div class="highlight-box">"Wearing noise-cancelling headphones in a crowded area wasn't just a research exercise. It made us realize the problem wasn't just hearing — it was the feeling of being cut off from a world that wasn't designed with you in mind. That insight drove every design decision after it."</div>
+      <p>If I had two more weeks, the first thing I'd do is recruit three to five people from the deaf community for 20-minute interviews. The specific question I'd lead with: <strong>"Do you actually want hearing allies in the same app as you, or does that feel like the app was built for them, not you?"</strong> That assumption — that all three user types belong in one product — is the one I was most afraid was wrong.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>The Hardest Decision</h2>
+      <p>The live ASL camera translation feature was the most contested design decision on the team. It touched three separate risk areas simultaneously:</p>
+      <div class="decision-card"><h4>Scope risk</h4><p>Real-time ASL recognition requires significant ML infrastructure. As a startup, committing to this feature in v1 could sink the roadmap before the product found product-market fit.</p></div>
+      <div class="decision-card"><h4>Accuracy risk</h4><p>An ASL translation that gets it wrong doesn't just frustrate users. It can lead to genuine miscommunication for people who rely on it in important situations. A wrong translation in a medical or legal context could cause real harm.</p></div>
+      <div class="decision-card"><h4>Trust risk</h4><p>Deaf users have often been burned by accessibility technology that overpromises. If the product launches with a live feature that underperforms, it loses the community's trust entirely, and that trust is nearly impossible to rebuild.</p></div>
+      <p style="margin-top:1.25rem;">Our recommendation: <strong>ship a manual input translation mode first</strong> to build trust and gather real usage data. Position the live camera feature as a clearly-labelled beta for users who opt in, with explicit accuracy caveats. This de-risks the launch while keeping the vision intact.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Key Design Decisions</h2>
+      <p>Personalized onboarding was the highest-leverage design decision. By asking users to identify as Deaf, hard-of-hearing, or hearing at the start, we could surface the right features immediately and avoid overwhelming any segment with irrelevant options.</p>
+      <p>The accessibility settings screen was built as a first-class feature, not an afterthought buried in a menu. <strong>For a product serving this community, accessibility settings are the product.</strong> Font sizes, contrast modes, vibration patterns, and captioning speed are all surfaced front and center.</p>
+      <div class="tag-row">
+        <span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">Accessibility Design</span><span class="tag">User Segmentation</span><span class="tag">Competitive Analysis</span><span class="tag">Empathy Research</span>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>What I'd Do Differently</h2>
+      <p>If I had two weeks instead of one during exam season, I would have prioritized recruiting even three people from the deaf or hard-of-hearing community for short interviews. We had three assumptions I was genuinely afraid were wrong going into the final presentation.</p>
+      <p>First: <strong>whether users would trust an AI translation enough to use it in situations that actually matter</strong> — a medical appointment, a job interview, an argument with a landlord. Low-stakes use cases don't validate a product. High-stakes ones do. Second: whether the three-profile onboarding would feel inclusive or accidentally signal that the app wasn't really built for Deaf users. Third: whether the startup could realistically ship live ASL translation at all without it becoming a liability before the accuracy was good enough.</p>
+      <p>On success metrics, I would have defined one north star from day one: <strong>the percentage of users who initiate a real-world conversation using the app within their first seven days</strong>. Not installs. Not onboarding completion. Actual communication. That's the only thing that proves the product is doing its job.</p>
+      <p>On the commercial side, I'd have explored AODA compliance more deeply. Many Canadian employers and institutions are legally required to provide accessible communication tools. Squirl Signs could be sold to organizations as a compliance solution, opening an enterprise revenue stream alongside the consumer app and making the business case significantly stronger.</p>
+    </div>
+
+  </div>
+
+  <div class="nav-projects">
+    <a href="index.html#projects">← All projects</a>
+    <a href="match.html">Next: Match →</a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    let dark = false;
+    toggle.addEventListener('click', () => { dark = !dark; document.body.classList.toggle('dark', dark); toggle.textContent = dark ? '☀️' : '🌙'; });
+  </script>
+</body>
+</html>

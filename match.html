@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Match · Jack Zhang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf8f4;
+      --surface: #ffffff;
+      --border: #e8e3d8;
+      --accent: #d4773a;
+      --accent-hover: #bc6028;
+      --accent2: #e8a265;
+      --text: #1c1a17;
+      --muted: #706a5e;
+      --card: #ffffff;
+      --nav-bg: rgba(250,248,244,0.93);
+      --shadow: rgba(212,119,58,0.15);
+      --soft: #f5f0e8;
+    }
+    body.dark {
+      --bg: #0e0f0d; --surface: #151714; --border: #252820;
+      --accent: #e8895a; --accent-hover: #d4733e; --accent2: #f0b47a;
+      --text: #eeedea; --muted: #a8a49c; --card: #131510;
+      --nav-bg: rgba(14,15,13,0.93); --shadow: rgba(232,137,90,0.15);
+      --soft: #1a1c18;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: all 0.4s; }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+    .nav-back:hover { color: var(--accent); }
+    .theme-toggle { background: var(--surface); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); }
+
+    /* HERO */
+    .case-hero {
+      padding: 9rem 4rem 4rem;
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 6rem; right: 0;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,119,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212,119,58,0.09); border: 1px solid rgba(212,119,58,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
+    .case-tag::before { content: ''; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+    .case-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; color: var(--text); }
+    .case-hero h1 em { font-style: normal; color: var(--accent); }
+    .subtitle { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.75; }
+    .subtitle strong { color: var(--text); font-weight: 500; }
+
+    /* META BAR */
+    .meta-bar { display: flex; flex-wrap: wrap; gap: 0; background: var(--card); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 5rem; overflow: hidden; }
+    .meta-item { flex: 1; min-width: 140px; padding: 1.5rem 2rem; border-right: 1px solid var(--border); }
+    .meta-item:last-child { border-right: none; }
+    .meta-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .meta-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); line-height: 1.3; }
+
+    /* BODY */
+    .case-body { max-width: 960px; margin: 0 auto; padding: 0 4rem 8rem; }
+
+    /* SECTION */
+    .case-section { margin-bottom: 5rem; }
+    .section-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+    .case-section h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 1.9rem); letter-spacing: -0.025em; margin-bottom: 1.25rem; color: var(--text); line-height: 1.2; }
+    .case-section p { color: var(--muted); margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.8; }
+    .case-section p strong { color: var(--text); font-weight: 500; }
+    .case-section p:last-child { margin-bottom: 0; }
+
+    /* PULL QUOTE */
+    .pull-quote { margin: 2.5rem 0; padding: 2rem 2.5rem; background: var(--soft); border-radius: 16px; position: relative; }
+    .pull-quote::before { content: '"'; position: absolute; top: -0.5rem; left: 1.5rem; font-family: 'Syne', sans-serif; font-size: 5rem; color: var(--accent); opacity: 0.15; line-height: 1; }
+    .pull-quote p { font-size: 1.1rem; font-style: italic; color: var(--text); line-height: 1.7; margin: 0; font-weight: 400; }
+    .pull-quote cite { display: block; margin-top: 0.75rem; font-size: 0.78rem; color: var(--accent); font-style: normal; letter-spacing: 0.06em; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { background: rgba(212,119,58,0.06); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 1.25rem 1.75rem; margin: 2rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.75; }
+
+    /* METRICS */
+    .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
+    .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+    .metric-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .metric-card .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.5rem; }
+    .metric-card .lbl { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
+
+    /* PROCESS STEPS */
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .process-step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s; }
+    .process-step:hover { border-color: var(--accent); }
+    .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); opacity: 0.25; line-height: 1; margin-bottom: 0.75rem; }
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
+    .col-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+    .col-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 0.6rem; }
+    .col-card p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.65; }
+    .col-card.highlight { border-color: rgba(212,119,58,0.35); background: rgba(212,119,58,0.04); }
+
+    /* SCREEN GALLERY */
+    .screen-gallery { margin: 2.5rem 0; }
+    .screen-gallery-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .screen-row { display: grid; gap: 1rem; margin-bottom: 1rem; }
+    .screen-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .screen-row.cols-1 { grid-template-columns: 1fr; }
+    .screen-frame { border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--soft); transition: transform 0.3s, box-shadow 0.3s; }
+    .screen-frame:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+    .screen-frame img { width: 100%; display: block; }
+    .screen-caption { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 0.5rem; }
+
+    /* FULL BLEED IMAGE */
+    .full-bleed { margin: 3rem -4rem; border-radius: 0; overflow: hidden; background: var(--soft); }
+    .full-bleed img { width: 100%; display: block; }
+    .full-bleed-caption { text-align: center; font-size: 0.78rem; color: var(--muted); padding: 0.75rem 4rem; }
+
+    /* TAGS */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { background: var(--soft); border: 1px solid var(--border); color: var(--muted); font-size: 0.75rem; padding: 0.3rem 0.85rem; border-radius: 100px; }
+
+    /* CTA */
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: var(--border); margin: 0 0 5rem; }
+
+    /* NAV PROJECTS */
+    .nav-projects { display: flex; justify-content: space-between; align-items: center; padding: 2.5rem 4rem; border-top: 1px solid var(--border); max-width: 960px; margin: 0 auto; }
+    .nav-projects a { color: var(--accent); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: opacity 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-projects a:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .case-hero, .case-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .case-hero { padding-top: 7rem; }
+      .metrics-row { grid-template-columns: 1fr 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .full-bleed { margin: 2rem -1.5rem; }
+      .full-bleed-caption { padding: 0.75rem 1.5rem; }
+      .nav-projects { padding: 2rem 1.5rem; flex-direction: column; gap: 1rem; }
+      .meta-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .meta-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Jack<span>.</span></a>
+    <a href="index.html#projects" class="nav-back">← All Projects</a>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+  </nav>
+
+  <div class="case-hero">
+    <div class="hero-glow"></div>
+    <div class="case-tag">Designathon · 4-Hour Sprint</div>
+    <h1>Match · <em>First-Year</em><br>Mentorship App</h1>
+    <p class="subtitle">A <strong>B2B mentorship platform</strong> designed for universities to reduce first-year attrition. Built end-to-end in 4 hours — grounded in personal experience and a hard lesson about what happens when a team forgets to align before they build.</p>
+
+    <div class="meta-bar">
+      <div class="meta-item"><div class="meta-label">My Role</div><div class="meta-value">Research Lead · Product Narrative</div></div>
+      <div class="meta-item"><div class="meta-label">Type</div><div class="meta-value">Designathon · 4-Hour Sprint</div></div>
+      <div class="meta-item"><div class="meta-label">Tools</div><div class="meta-value">Figma · Canva</div></div>
+      <div class="meta-item"><div class="meta-label">Model</div><div class="meta-value">B2B · University Licensing</div></div>
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- PROBLEM -->
+    <div class="case-section">
+      <div class="section-eyebrow">The Problem</div>
+      <h2>First-year attrition isn't a student problem. It's a revenue problem.</h2>
+      <p>First-year university students have one of the highest attrition rates of any student cohort. For universities, this isn't just a pastoral concern — <strong>every student who drops out represents tens of thousands of dollars in lost tuition revenue</strong>, plus the reputational cost of low completion rates. Despite this, most institutions rely on orientation week and passive club fairs as their primary retention strategy.</p>
+      <p>The research showed something more specific: students don't leave because academics are too hard. They leave because they feel invisible. They don't know anyone in their program, they have no upper-year guidance, and they hit a wall in week six with nobody to talk to.</p>
+      <div class="pull-quote">
+        <p>I didn't have a mentor in first year. I figured it out the hard way, and I watched people around me not figure it out at all. That's the problem we were designing for.</p>
+        <cite>— Personal research insight</cite>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- COMMERCIAL FRAMING -->
+    <div class="case-section">
+      <div class="section-eyebrow">Commercial Framing</div>
+      <h2>A zero-headcount retention system for universities.</h2>
+      <div class="metrics-row">
+        <div class="metric-card"><div class="val">30%</div><div class="lbl">Average first-year dropout rate at Canadian universities</div></div>
+        <div class="metric-card"><div class="val">B2B</div><div class="lbl">Sold to institutions, not individual students</div></div>
+        <div class="metric-card"><div class="val">$0</div><div class="lbl">Marginal cost to scale — peer mentors are existing students</div></div>
+      </div>
+      <p>The core commercial insight: universities already have the resource they need sitting in their second, third, and fourth-year students. Match doesn't add headcount or cost. It <strong>organizes existing human capital into a structured retention system</strong> and gives institutions a measurable engagement metric they didn't have before.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SCREENS -->
+    <div class="case-section">
+      <div class="section-eyebrow">Design Work</div>
+      <h2>The prototype — built in 4 hours.</h2>
+      <p>We designed two complete user flows: mentor application and mentee onboarding. Both were necessary. A mentee-only design would have been half a product. Matching was built around program, year of study, and shared interests — not availability or geography.</p>
+
+      <div class="screen-gallery">
+        <div class="screen-gallery-label">Onboarding · Application Flows</div>
+        <div class="screen-row cols-1">
+          <div class="screen-frame">
+            <img src="match-screens-1.png" alt="Match onboarding and application screens — Choose Your University, Log In, Mentor Application, Mentee Application" />
+          </div>
+        </div>
+        <p class="screen-caption">Institution selection, SSO login, and differentiated application forms for mentors vs. mentees</p>
+      </div>
+
+      <div class="screen-gallery">
+        <div class="screen-gallery-label">Core Experience · Chat · Matching</div>
+        <div class="screen-row cols-1">
+          <div class="screen-frame">
+            <img src="match-screens-3.png" alt="Match core screens — Profile, Explore, Clubs, Find your mentee, Chat" />
+          </div>
+        </div>
+        <p class="screen-caption">Profile editing, explore feed, clubs directory, mentor-side matching dashboard, and direct messaging</p>
+      </div>
+
+      <div class="screen-gallery">
+        <div class="screen-gallery-label">Chat States · Edge Cases</div>
+        <div class="screen-row cols-1">
+          <div class="screen-frame">
+            <img src="match-screens-2.png" alt="Match chat screens — active chat, keyboard state, empty state before matching" />
+          </div>
+        </div>
+        <p class="screen-caption">Active conversation view, keyboard interaction state, and the empty state shown before a match is confirmed</p>
+      </div>
+
+      <div class="highlight-box">One design decision I'm proud of: the empty state before matching doesn't just say "nothing here." It sets an expectation — "We're still working on matching you. Check back in about two weeks." That's a trust-building moment most teams overlook.</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- RESEARCH -->
+    <div class="case-section">
+      <div class="section-eyebrow">Research Basis</div>
+      <h2>In 4 hours, you research with what you have.</h2>
+      <p>Formal user research wasn't feasible in a 4-hour sprint. But we had two legitimate inputs that shaped every design decision.</p>
+      <div class="two-col">
+        <div class="col-card highlight">
+          <h4>Personal experience</h4>
+          <p>Both team members went through first year at UTM. The question I kept asking myself: was it academic pressure or social disconnection that felt worse? For me it was social disconnection. That answer determined what we built.</p>
+        </div>
+        <div class="col-card">
+          <h4>Peer observation</h4>
+          <p>We watched people around us who didn't make the transition. The common thread wasn't academic ability — it was lack of connection in the critical first eight weeks.</p>
+        </div>
+      </div>
+      <p style="margin-top: 1.5rem;">If I had two weeks, I would have run structured interviews with five to eight students. The single question I'd have led with: <strong>"Was it academic pressure or social disconnection that almost broke you in first year?"</strong> The answer determines whether Match is solving the right problem or a comfortable-sounding one.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- WHAT WENT WRONG -->
+    <div class="case-section">
+      <div class="section-eyebrow">What I'd Do Differently</div>
+      <h2>We had the right ideas. We just never said them out loud to each other.</h2>
+      <p>I'll be honest about what actually happened in that room. The thinking was there. But we shipped a presentation that tried to show everything instead of leading with the one insight that made Match worth building. The judges saw a club discovery app with mentorship bolted on. That wasn't the product we designed — it was the product our presentation accidentally described.</p>
+      <p>Part of that was a communication failure inside the team. I worked on the Figma prototype alongside one teammate. Another handled the slides independently. We all shared the same big idea — <strong>but we never stopped to align on the details before we walked into the room.</strong> When we presented, the product narrative in the slides was slightly off from the design decisions in the prototype, and the judges felt that inconsistency even if they couldn't name it.</p>
+
+      <div class="pull-quote">
+        <p>Having the same big idea isn't the same as being aligned. Alignment means saying it out loud to each other before you say it to anyone else.</p>
+      </div>
+
+      <p>The other lesson: lock the one thing the product does and never let it drift. If I walked into that room again, I'd spend the first 30 minutes writing one sentence: <em>Match helps first-year students find an upper-year mentor who took the same path they're on.</em> Then I'd make sure every person on the team could repeat that sentence before we opened Figma.</p>
+      <p>I'd also have tackled the blank canvas problem. You can build the most elegant matching algorithm in the world — it fails the moment a mentee stares at an empty message box and closes the app. Version two includes a structured first-message prompt. Something like: "Ask your mentor one question about your first semester." Remove the friction of that moment and your activation metric changes overnight.</p>
+
+      <div class="tag-row">
+        <span class="tag">Figma</span>
+        <span class="tag">Rapid Prototyping</span>
+        <span class="tag">B2B Framing</span>
+        <span class="tag">User Flow</span>
+        <span class="tag">Scope Management</span>
+        <span class="tag">Team Alignment</span>
+        <span class="tag">Designathon</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://www.canva.com/design/DAHEmghKEaE/gZOXQB_N7RWOCmGHhTAChw/edit" target="_blank" rel="noopener" class="btn btn-primary">View Full Presentation →</a>
+        <a href="squirl.html" class="btn btn-ghost">Next Project: Squirl Signs</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="nav-projects">
+    <a href="squirl.html">← Squirl Signs</a>
+    <a href="index.html#projects">All projects →</a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('themeToggle');
+    let dark = false;
+    toggle.addEventListener('click', () => {
+      dark = !dark;
+      document.body.classList.toggle('dark', dark);
+      toggle.textContent = dark ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
