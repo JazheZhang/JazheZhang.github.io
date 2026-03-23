@@ -4,38 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Match · Jack Zhang</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #faf8f4;
-      --surface: #ffffff;
-      --border: #e8e3d8;
-      --accent: #d4773a;
-      --accent-hover: #bc6028;
-      --accent2: #e8a265;
-      --text: #1c1a17;
-      --muted: #706a5e;
-      --card: #ffffff;
-      --nav-bg: rgba(250,248,244,0.93);
-      --shadow: rgba(212,119,58,0.15);
-      --soft: #f5f0e8;
+      --bg: #080c14;
+      --surface: #0d1220;
+      --border: #1a2236;
+      --accent: #4f8ef7;
+      --accent-hover: #3a7af5;
+      --accent2: #a5c4fd;
+      --text: #f0f2f7;
+      --muted: #7a8aaa;
+      --card: #0d1220;
+      --nav-bg: rgba(8,12,20,0.92);
+      --shadow: rgba(79,142,247,0.18);
+      --soft: #0f1526;
     }
-    body.dark {
-      --bg: #0e0f0d; --surface: #151714; --border: #252820;
-      --accent: #e8895a; --accent-hover: #d4733e; --accent2: #f0b47a;
-      --text: #eeedea; --muted: #a8a49c; --card: #131510;
-      --nav-bg: rgba(14,15,13,0.93); --shadow: rgba(232,137,90,0.15);
-      --soft: #1a1c18;
+    body.light {
+      --bg: #f4f6fb;
+      --surface: #0d1220;
+      --border: #dde3f0;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent2: #3b82f6;
+      --text: #0f172a;
+      --muted: #64748b;
+      --card: #0d1220;
+      --nav-bg: rgba(244,246,251,0.93);
+      --shadow: rgba(37,99,235,0.15);
+      --soft: #eef1f9;
     }
 
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
 
     /* NAV */
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: all 0.4s; }
-    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
     .nav-logo span { color: var(--accent); }
     .nav-back { color: var(--muted); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
     .nav-back:hover { color: var(--accent); }
@@ -53,12 +60,12 @@
       position: absolute;
       top: 6rem; right: 0;
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(212,119,58,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(212,119,58,0.09); border: 1px solid rgba(212,119,58,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
+    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79,142,247,0.09); border: 1px solid rgba(79,142,247,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem; }
     .case-tag::before { content: ''; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
-    .case-hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; color: var(--text); }
+    .case-hero h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5.5vw, 4.2rem); letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 1.5rem; color: var(--text); }
     .case-hero h1 em { font-style: normal; color: var(--accent); }
     .subtitle { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin-bottom: 3rem; line-height: 1.75; }
     .subtitle strong { color: var(--text); font-weight: 500; }
@@ -68,7 +75,7 @@
     .meta-item { flex: 1; min-width: 140px; padding: 1.5rem 2rem; border-right: 1px solid var(--border); }
     .meta-item:last-child { border-right: none; }
     .meta-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
-    .meta-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); line-height: 1.3; }
+    .meta-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); line-height: 1.3; }
 
     /* BODY */
     .case-body { max-width: 960px; margin: 0 auto; padding: 0 4rem 8rem; }
@@ -76,41 +83,41 @@
     /* SECTION */
     .case-section { margin-bottom: 5rem; }
     .section-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
-    .case-section h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 1.9rem); letter-spacing: -0.025em; margin-bottom: 1.25rem; color: var(--text); line-height: 1.2; }
+    .case-section h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(1.4rem, 2.5vw, 1.9rem); letter-spacing: -0.025em; margin-bottom: 1.25rem; color: var(--text); line-height: 1.2; }
     .case-section p { color: var(--muted); margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.8; }
     .case-section p strong { color: var(--text); font-weight: 500; }
     .case-section p:last-child { margin-bottom: 0; }
 
     /* PULL QUOTE */
     .pull-quote { margin: 2.5rem 0; padding: 2rem 2.5rem; background: var(--soft); border-radius: 16px; position: relative; }
-    .pull-quote::before { content: '"'; position: absolute; top: -0.5rem; left: 1.5rem; font-family: 'Syne', sans-serif; font-size: 5rem; color: var(--accent); opacity: 0.15; line-height: 1; }
+    .pull-quote::before { content: '"'; position: absolute; top: -0.5rem; left: 1.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 5rem; color: var(--accent); opacity: 0.15; line-height: 1; }
     .pull-quote p { font-size: 1.1rem; font-style: italic; color: var(--text); line-height: 1.7; margin: 0; font-weight: 400; }
     .pull-quote cite { display: block; margin-top: 0.75rem; font-size: 0.78rem; color: var(--accent); font-style: normal; letter-spacing: 0.06em; }
 
     /* HIGHLIGHT BOX */
-    .highlight-box { background: rgba(212,119,58,0.06); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 1.25rem 1.75rem; margin: 2rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.75; }
+    .highlight-box { background: rgba(79,142,247,0.06); border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0; padding: 1.25rem 1.75rem; margin: 2rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.75; }
 
     /* METRICS */
     .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 2rem 0; }
     .metric-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem 1.5rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
     .metric-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-    .metric-card .val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.5rem; }
+    .metric-card .val { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--accent); letter-spacing: -0.05em; line-height: 1; margin-bottom: 0.5rem; }
     .metric-card .lbl { font-size: 0.75rem; color: var(--muted); line-height: 1.4; }
 
     /* PROCESS STEPS */
     .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
     .process-step { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s; }
     .process-step:hover { border-color: var(--accent); }
-    .step-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); opacity: 0.25; line-height: 1; margin-bottom: 0.75rem; }
-    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
+    .step-num { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: 2rem; color: var(--accent); opacity: 0.25; line-height: 1; margin-bottom: 0.75rem; }
+    .step-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.4rem; }
     .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
 
     /* TWO COL */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; }
     .col-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
-    .col-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 0.6rem; }
+    .col-card h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--text); margin-bottom: 0.6rem; }
     .col-card p { font-size: 0.85rem; color: var(--muted); margin: 0; line-height: 1.65; }
-    .col-card.highlight { border-color: rgba(212,119,58,0.35); background: rgba(212,119,58,0.04); }
+    .col-card.highlight { border-color: rgba(79,142,247,0.35); background: rgba(79,142,247,0.04); }
 
     /* SCREEN GALLERY */
     .screen-gallery { margin: 2.5rem 0; }
@@ -134,7 +141,7 @@
 
     /* CTA */
     .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; font-family: 'Inter', sans-serif; }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow); }
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
@@ -167,7 +174,7 @@
   <nav>
     <a href="index.html" class="nav-logo">Jack<span>.</span></a>
     <a href="index.html#projects" class="nav-back">← All Projects</a>
-    <button class="theme-toggle" id="themeToggle">🌙</button>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
   </nav>
 
   <div class="case-hero">
@@ -314,11 +321,11 @@
 
   <script>
     const toggle = document.getElementById('themeToggle');
-    let dark = false;
+    let light = false;
     toggle.addEventListener('click', () => {
-      dark = !dark;
-      document.body.classList.toggle('dark', dark);
-      toggle.textContent = dark ? '☀️' : '🌙';
+      light = !light;
+      document.body.classList.toggle('light', light);
+      toggle.textContent = light ? '🌙' : '☀️';
     });
   </script>
 </body>
