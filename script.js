@@ -2,85 +2,114 @@
 // script.js — Jack Zhang Portfolio
 // ============================================
 
-// --- 1. HAMBURGER MENU ---
-// Get the hamburger button and nav links
+
+// --- 1. DARK MODE TOGGLE ---
+var darkToggle = document.getElementById('darkToggle');
+var toggleIcon = darkToggle.querySelector('.toggle-icon');
+var toggleText = darkToggle.querySelector('.toggle-text');
+
+// Check if user previously set dark mode
+if (localStorage.getItem('darkMode') === 'on') {
+  document.body.classList.add('dark');
+  toggleIcon.innerHTML = '&#9788;'; // sun icon
+  if (toggleText) toggleText.textContent = 'Light';
+}
+
+darkToggle.addEventListener('click', function () {
+  document.body.classList.toggle('dark');
+
+  var isDark = document.body.classList.contains('dark');
+
+  if (isDark) {
+    toggleIcon.innerHTML = '&#9788;'; // sun
+    if (toggleText) toggleText.textContent = 'Light';
+    localStorage.setItem('darkMode', 'on');
+  } else {
+    toggleIcon.innerHTML = '&#9790;'; // moon
+    if (toggleText) toggleText.textContent = 'Dark';
+    localStorage.setItem('darkMode', 'off');
+  }
+});
+
+
+// --- 2. HAMBURGER MENU ---
 var hamburger = document.getElementById('hamburger');
 var navLinks = document.getElementById('nav-links');
 
-// When the hamburger button is clicked, toggle the 'open' class
 hamburger.addEventListener('click', function () {
   navLinks.classList.toggle('open');
 });
 
-// Close the menu when a nav link is clicked
-var links = navLinks.querySelectorAll('a');
-for (var i = 0; i < links.length; i++) {
-  links[i].addEventListener('click', function () {
+// Close menu when a link is clicked
+var allNavLinks = navLinks.querySelectorAll('a');
+for (var i = 0; i < allNavLinks.length; i++) {
+  allNavLinks[i].addEventListener('click', function () {
     navLinks.classList.remove('open');
   });
 }
 
 
-// --- 2. DARK MODE TOGGLE ---
-// Get the dark mode button
-var darkToggle = document.getElementById('darkToggle');
-
-// When the button is clicked, toggle dark mode on the body
-darkToggle.addEventListener('click', function () {
-  document.body.classList.toggle('dark');
-
-  // Update the button text depending on which mode is active
-  if (document.body.classList.contains('dark')) {
-    darkToggle.textContent = 'Light Mode';
-  } else {
-    darkToggle.textContent = 'Dark Mode';
-  }
-});
-
-
-// --- 3. ACTIVE NAV LINK ON SCROLL ---
-// Highlight the correct nav link based on which section is visible
-
-// Get all sections that have an id
-var sections = document.querySelectorAll('section[id]');
-var navAnchors = document.querySelectorAll('.nav-links a');
-
-// Listen for scroll events
-window.addEventListener('scroll', function () {
-  var scrollPosition = window.scrollY + 100;
-  var currentSection = '';
-
-  // Loop through each section and check if we've scrolled to it
-  for (var j = 0; j < sections.length; j++) {
-    var section = sections[j];
-    if (section.offsetTop <= scrollPosition) {
-      currentSection = section.getAttribute('id');
-    }
-  }
-
-  // Add 'active' class to the matching nav link
-  for (var k = 0; k < navAnchors.length; k++) {
-    navAnchors[k].classList.remove('active');
-    if (navAnchors[k].getAttribute('href') === '#' + currentSection) {
-      navAnchors[k].classList.add('active');
-    }
-  }
-});
-
-
-// --- 4. SMOOTH SCROLL FOR ANCHOR LINKS ---
-// Make all # links scroll smoothly instead of jumping
-
+// --- 3. SMOOTH SCROLL FOR ANCHOR LINKS ---
 var anchorLinks = document.querySelectorAll('a[href^="#"]');
 
-for (var m = 0; m < anchorLinks.length; m++) {
-  anchorLinks[m].addEventListener('click', function (e) {
+for (var j = 0; j < anchorLinks.length; j++) {
+  anchorLinks[j].addEventListener('click', function (e) {
     var targetId = this.getAttribute('href');
-    var targetElement = document.querySelector(targetId);
 
-    if (targetElement) {
-      e.preventDefault();
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Only handle actual section links (not just "#")
+    if (targetId.length > 1) {
+      var targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
   });
 }
+
+
+// --- 4. ACTIVE NAV LINK ON SCROLL ---
+var sections = document.querySelectorAll('section[id]');
+var navAnchors = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', function () {
+  var scrollY = window.scrollY + 100;
+  var current = '';
+
+  for (var k = 0; k < sections.length; k++) {
+    if (sections[k].offsetTop <= scrollY) {
+      current = sections[k].getAttribute('id');
+    }
+  }
+
+  for (var m = 0; m < navAnchors.length; m++) {
+    navAnchors[m].classList.remove('active');
+    if (navAnchors[m].getAttribute('href') === '#' + current) {
+      navAnchors[m].classList.add('active');
+    }
+  }
+});
+
+
+// --- 5. FADE IN SECTIONS ON SCROLL ---
+var fadeEls = document.querySelectorAll('.skill-card, .project-card, .fact-card, .hero-card');
+
+// Add base style for animation
+for (var n = 0; n < fadeEls.length; n++) {
+  fadeEls[n].style.opacity = '0';
+  fadeEls[n].style.transform = 'translateY(20px)';
+  fadeEls[n].style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+}
+
+function checkFade() {
+  for (var p = 0; p < fadeEls.length; p++) {
+    var rect = fadeEls[p].getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      fadeEls[p].style.opacity = '1';
+      fadeEls[p].style.transform = 'translateY(0)';
+    }
+  }
+}
+
+window.addEventListener('scroll', checkFade);
+window.addEventListener('load', checkFade);
