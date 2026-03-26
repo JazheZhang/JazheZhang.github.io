@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jack Zhang | Portfolio</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 
   <!-- NAVIGATION -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">Jack Zhang</a>
+      <a href="#home" class="nav-logo">JZ<span class="logo-dot">.</span></a>
       <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#about">About</a></li>
@@ -19,23 +20,47 @@
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="dark-toggle" id="darkToggle">Dark Mode</button>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+        <span class="toggle-icon">&#9790;</span>
+        <span class="toggle-text">Dark</span>
+      </button>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <div class="hero-bg-shape"></div>
     <div class="hero-content">
-      <p class="hero-greeting">Hi, I'm</p>
-      <h1 class="hero-name">Jack Zhang</h1>
+      <div class="hero-badge">&#x2022; Open to internships</div>
+      <h1 class="hero-name">
+        Jack<br>
+        <span class="hero-name-accent">Zhang.</span>
+      </h1>
       <p class="hero-title">UX/UI Designer &amp; Web Developer</p>
       <p class="hero-desc">
-        CCIT student at the University of Toronto Mississauga. I build things that are
-        both beautiful and useful — and I'm always learning how to do it better.
+        CCIT student at UTM. I stopped complaining about bad products
+        and started fixing them.
       </p>
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        <a href="#projects" class="btn btn-primary">View My Work &#8594;</a>
+        <a href="#contact" class="btn btn-outline">Say Hello</a>
+      </div>
+      <div class="hero-scroll-hint">
+        <span class="scroll-arrow">&#8595;</span> Scroll to explore
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-card">
+        <div class="hero-card-label">Currently</div>
+        <div class="hero-card-value">Building &amp; Learning</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Based in</div>
+        <div class="hero-card-value">Toronto, ON</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Program</div>
+        <div class="hero-card-value">CCIT @ UTM</div>
       </div>
     </div>
   </section>
@@ -43,34 +68,48 @@
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
       <div class="about-grid">
         <div class="about-text">
           <p>
             I'm a CCIT student at UTM with a passion for design and product thinking.
-            I got into this field because I wanted to stop complaining about bad products
-            and start fixing them.
+            I got into this field because I realized I had the power to change something
+            tangible — instead of being the person who complains about bad design,
+            I decided to become the person who fixes it.
           </p>
           <p>
-            I've competed in accessibility and product design case competitions, built this
-            website from scratch, and I'm working toward a career in UX/UI design and
-            product management.
+            I've competed in accessibility and product design case competitions,
+            built this website from scratch, and I'm working toward a career in
+            UX/UI design and product management.
           </p>
           <p>
-            Outside of class I'm constantly building, competing, and exploring new ideas.
-            I believe the best products solve problems people couldn't even articulate themselves.
+            Outside of class I'm constantly building, competing, and exploring.
+            I believe the best products solve problems people couldn't
+            even articulate themselves.
           </p>
+          <!-- Contact Me scrolls to #contact section, NOT external link -->
+          <a href="#contact" class="btn btn-primary about-cta">Let's Connect &#8594;</a>
         </div>
-        <div class="about-info">
-          <ul class="info-list">
-            <li><span class="info-label">Name:</span> Jack Zhang</li>
-            <li><span class="info-label">School:</span> University of Toronto Mississauga</li>
-            <li><span class="info-label">Program:</span> CCIT</li>
-            <li><span class="info-label">Location:</span> Toronto, ON</li>
-            <li><span class="info-label">Email:</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcfdc6d4d9d6dddfd7fcdbd1ddd5d092dfd3d1">[email&#160;protected]</a></li>
-            <li><span class="info-label">Status:</span> Open to internships</li>
-          </ul>
-          <a href="/cdn-cgi/l/email-protection#88c9f2e0ede2e9ebe3c8efe5e9e1e4a6ebe7e5" class="btn btn-primary contact-btn">Contact Me</a>
+        <div class="about-facts">
+          <div class="fact-card">
+            <span class="fact-number">2</span>
+            <span class="fact-label">Case Competitions</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-number">3</span>
+            <span class="fact-label">Projects Shipped</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-number">430K+</span>
+            <span class="fact-label">Users Designed For</span>
+          </div>
+          <div class="fact-card">
+            <span class="fact-number">4hr</span>
+            <span class="fact-label">Fastest Design Sprint</span>
+          </div>
         </div>
       </div>
     </div>
@@ -79,29 +118,38 @@
   <!-- SKILLS -->
   <section class="section section-alt" id="skills">
     <div class="container">
-      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Skills &amp; Tools</h2>
+      </div>
       <div class="skills-grid">
         <div class="skill-card">
+          <div class="skill-icon">&#9998;</div>
           <h3>UX / UI Design</h3>
           <p>User research, wireframing, prototyping, and visual design with a user-centered approach.</p>
         </div>
         <div class="skill-card">
+          <div class="skill-icon">&#60;/&#62;</div>
           <h3>HTML &amp; CSS</h3>
           <p>Semantic HTML, responsive layouts using Flexbox and CSS Grid, and clean external stylesheets.</p>
         </div>
         <div class="skill-card">
+          <div class="skill-icon">&#9711;</div>
           <h3>JavaScript</h3>
           <p>DOM manipulation, event listeners, and interactive UI elements.</p>
         </div>
         <div class="skill-card">
+          <div class="skill-icon">&#9670;</div>
           <h3>Figma</h3>
-          <p>Wireframes, hi-fi prototypes, and component-based design.</p>
+          <p>Wireframes, hi-fi prototypes, and component-based design systems.</p>
         </div>
         <div class="skill-card">
+          <div class="skill-icon">&#9650;</div>
           <h3>Product Thinking</h3>
           <p>Identifying user needs, commercial framing, KPIs, and go-to-market strategy.</p>
         </div>
         <div class="skill-card">
+          <div class="skill-icon">&#9679;</div>
           <h3>UX Research</h3>
           <p>Competitor analysis, empathy research, user journey mapping, and insight synthesis.</p>
         </div>
@@ -112,54 +160,65 @@
   <!-- PROJECTS -->
   <section class="section" id="projects">
     <div class="container">
-      <h2 class="section-title">Projects</h2>
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Projects</h2>
+      </div>
       <div class="projects-grid">
 
         <div class="project-card">
-          <div class="project-tag">Accessibility Case Comp</div>
+          <div class="project-header">
+            <div class="project-tag">Accessibility Case Comp</div>
+            <div class="project-arrow">&#8599;</div>
+          </div>
           <h3>Squirl Signs</h3>
           <p>
             Designed a mobile app for a startup serving 430,000+ deaf and hard-of-hearing
-            Canadians. Led research and designed onboarding flows for three distinct user
-            profiles: Deaf, hard-of-hearing, and hearing allies.
+            Canadians. Designed onboarding flows for three distinct user profiles.
           </p>
           <div class="project-stack">
             <span class="tag">Figma</span>
             <span class="tag">UX Research</span>
             <span class="tag">Accessibility</span>
           </div>
-          <a href="squirl.html" class="btn btn-outline">View Case Study &rarr;</a>
+          <a href="squirl.html" class="btn btn-outline project-btn">View Case Study &#8594;</a>
         </div>
 
-        <div class="project-card">
-          <div class="project-tag">Designathon &mdash; 4 Hours</div>
+        <div class="project-card project-card-featured">
+          <div class="project-header">
+            <div class="project-tag project-tag-featured">Designathon &mdash; 4 hrs</div>
+            <div class="project-arrow">&#8599;</div>
+          </div>
           <h3>Match</h3>
           <p>
-            Designed a B2B mentorship platform for universities in a 4-hour sprint.
-            Framed first-year attrition as a revenue problem and built a peer-matching
-            solution that scales without adding headcount.
+            B2B mentorship platform for universities. Framed first-year attrition as a
+            revenue problem and designed a peer-matching solution that scales without
+            adding headcount.
           </p>
           <div class="project-stack">
             <span class="tag">Figma</span>
             <span class="tag">Prototyping</span>
             <span class="tag">B2B Strategy</span>
           </div>
-          <a href="match.html" class="btn btn-outline">View Case Study &rarr;</a>
+          <a href="match.html" class="btn btn-primary project-btn">View Case Study &#8594;</a>
         </div>
 
         <div class="project-card">
-          <div class="project-tag">Web Development</div>
+          <div class="project-header">
+            <div class="project-tag">Web Development</div>
+            <div class="project-arrow">&#8599;</div>
+          </div>
           <h3>This Portfolio</h3>
           <p>
-            Built from scratch using HTML, CSS, and JavaScript. No frameworks or templates.
-            Every line written by hand. Fully responsive across mobile and desktop screen sizes.
+            Built from scratch using HTML, CSS, and JavaScript. No frameworks,
+            no templates. Fully responsive. Every line written by hand.
           </p>
           <div class="project-stack">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
           </div>
-          <a href="#home" class="btn btn-outline">You're Looking at It &rarr;</a>
+          <a href="#home" class="btn btn-outline project-btn">You're Looking at It &#8594;</a>
         </div>
 
       </div>
@@ -167,16 +226,30 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-alt" id="contact">
+  <section class="section contact-section" id="contact">
     <div class="container contact-container">
-      <h2 class="section-title">Get in Touch</h2>
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Get in Touch</h2>
+      </div>
       <p class="contact-intro">
-        I'm open to internships, collaborations, and conversations about design and product.
-        Feel free to reach out any time.
+        I'm open to internships, collaborations, and conversations about
+        design and product. Feel free to reach out any time.
       </p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#dc9da6b4b9b6bdbfb79cbbb1bdb5b0f2bfb3b1" class="btn btn-primary">Email Me</a>
-        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" class="btn btn-outline">LinkedIn</a>
-        <a href="https://github.com/JazheZhang" target="_blank" class="btn btn-outline">GitHub</a>
+        <a href="mailto:Azhejack@gmail.com" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" class="btn btn-outline">LinkedIn &#8599;</a>
+        <a href="https://github.com/JazheZhang" target="_blank" class="btn btn-outline">GitHub &#8599;</a>
       </div>
     </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
+    <a href="#home" class="footer-top">Back to top &#8593;</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
