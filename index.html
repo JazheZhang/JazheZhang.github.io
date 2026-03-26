@@ -2,469 +2,181 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jack Zhang · CCIT @ UTM</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #080c14;
-      --surface: #0d1220;
-      --border: #1a2236;
-      --accent: #4f8ef7;
-      --accent-hover: #3a7af5;
-      --accent2: #a5c4fd;
-      --text: #f0f2f7;
-      --muted: #7a8aaa;
-      --card: #0d1220;
-      --nav-bg: rgba(8,12,20,0.92);
-      --h1-outline: rgba(240,242,247,0.12);
-      --shadow: rgba(79,142,247,0.18);
-      --soft: #0f1526;
-      --glow: rgba(79,142,247,0.06);
-    }
-
-    body.light {
-      --bg: #f4f6fb;
-      --surface: #ffffff;
-      --border: #dde3f0;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent2: #3b82f6;
-      --text: #0f172a;
-      --muted: #64748b;
-      --card: #ffffff;
-      --nav-bg: rgba(244,246,251,0.93);
-      --h1-outline: rgba(15,23,42,0.12);
-      --shadow: rgba(37,99,235,0.15);
-      --soft: #eef1f9;
-      --glow: rgba(37,99,235,0.05);
-    }
-
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
-
-    /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 4rem; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); transition: all 0.4s; }
-    .nav-logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); text-decoration: none; letter-spacing: -0.03em; }
-    .nav-logo span { color: var(--accent); }
-    nav ul { list-style: none; display: flex; gap: 2.5rem; }
-    nav ul a { text-decoration: none; color: var(--muted); font-size: 0.82rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; font-family: 'Space Grotesk', sans-serif; }
-    nav ul a:hover, nav ul a.active { color: var(--text); }
-    .theme-toggle { background: var(--surface); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-    .theme-toggle:hover { border-color: var(--accent); }
-
-    /* HERO */
-    .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
-
-    /* Grid background */
-    .hero-grid {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.35;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
-    }
-
-    .hero-glow { position: absolute; top: 20%; right: 5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%); pointer-events: none; }
-    .hero-glow2 { position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(79,142,247,0.05) 0%, transparent 70%); pointer-events: none; }
-
-    #particle-canvas { position: absolute; inset: 0; pointer-events: none; }
-
-    /* Decorative elements */
-    .hero-deco-br { position: absolute; bottom: 3rem; right: 4rem; opacity: 0; animation: fadeUp 1s ease 1.2s forwards; pointer-events: none; }
-    .hero-deco-br svg { width: 70px; opacity: 0.15; color: var(--accent); }
-
-    .hero-content { position: relative; max-width: 820px; }
-
-    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79,142,247,0.08); border: 1px solid rgba(79,142,247,0.2); color: var(--accent); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem; opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards; font-family: 'Space Grotesk', sans-serif; }
-    .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: blink-dot 2s infinite; box-shadow: 0 0 6px var(--accent); }
-    @keyframes blink-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
-
-    h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(3rem, 7vw, 5.8rem); line-height: 1.02; letter-spacing: -0.04em; margin-bottom: 1.5rem; color: var(--text); opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
-    h1 .line2 { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--h1-outline); }
-    h1 .accent { color: var(--accent); -webkit-text-stroke: 0; position: relative; text-shadow: 0 0 40px rgba(79,142,247,0.3); }
-
-    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards; line-height: 1.75; }
-    .hero-sub strong { color: var(--text); font-weight: 500; }
-
-    .hero-pov { font-size: 0.92rem; color: var(--muted); max-width: 560px; margin-bottom: 2.5rem; padding: 1rem 1.25rem; border-left: 2px solid var(--accent); background: rgba(79,142,247,0.05); border-radius: 0 8px 8px 0; opacity: 0; animation: fadeUp 0.7s ease 0.5s forwards; font-style: italic; }
-
-    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards; }
-
-    .hero-arrow-hint { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards; margin-top: 1.5rem; font-family: 'Space Grotesk', sans-serif; }
-    .hero-arrow-hint svg { width: 24px; color: var(--accent); opacity: 0.7; }
-
-    .hero-scroll { position: absolute; bottom: 2.5rem; left: 4rem; display: flex; align-items: center; gap: 0.75rem; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0; animation: fadeUp 0.7s ease 0.9s forwards; font-family: 'Space Grotesk', sans-serif; }
-    .scroll-line { width: 40px; height: 1px; background: var(--border); }
-
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    /* MARQUEE */
-    .marquee-wrap { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; padding: 0.8rem 0; background: var(--soft); }
-    .marquee-track { display: flex; width: max-content; animation: marquee 25s linear infinite; }
-    .marquee-track:hover { animation-play-state: paused; }
-    .marquee-item { display: flex; align-items: center; gap: 0.6rem; padding: 0 2.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-    .marquee-dot { width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; box-shadow: 0 0 4px var(--accent); }
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* SECTIONS */
-    section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; }
-    .section-label::before { content: '//'; font-size: 0.75rem; opacity: 0.6; }
-    h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.03em; margin-bottom: 3rem; line-height: 1.1; color: var(--text); }
-
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; max-width: 680px; }
-    .about-text p { color: var(--muted); margin-bottom: 1.25rem; font-size: 1rem; line-height: 1.8; }
-    .about-text p strong { color: var(--text); font-weight: 500; }
-    .about-pov { margin-top: 1.5rem; padding: 1.25rem 1.5rem; background: rgba(79,142,247,0.05); border-left: 2px solid var(--accent); border-radius: 0 10px 10px 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.75; }
-    .about-float { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
-    .float-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--soft); border: 1px solid var(--border); border-radius: 100px; padding: 0.35rem 0.9rem; font-size: 0.75rem; color: var(--muted); transition: all 0.2s; font-family: 'Space Grotesk', sans-serif; }
-    .float-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-    .float-tag .arrow { font-size: 0.7rem; color: var(--accent); }
-
-    /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; }
-    .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 1.25rem; transition: all 0.25s; cursor: default; position: relative; overflow: hidden; }
-    .skill-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(79,142,247,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
-    .skill-card:hover { border-color: rgba(79,142,247,0.4); transform: translateY(-4px); box-shadow: 0 12px 32px var(--shadow); }
-    .skill-card:hover::before { opacity: 1; }
-    .skill-name { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.92rem; margin-bottom: 0.35rem; color: var(--text); }
-    .skill-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
-
-    /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; cursor: pointer; text-decoration: none; display: block; color: inherit; }
-    .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
-    .project-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(79,142,247,0.03) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; }
-    .project-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(79,142,247,0.1); }
-    .project-card:hover::before { opacity: 1; }
-    .project-card:hover::after { opacity: 1; }
-    .project-card:hover .project-cta { color: var(--accent); gap: 0.6rem; }
-
-    .project-tag { display: inline-block; background: rgba(79,142,247,0.1); color: var(--accent); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 100px; margin-bottom: 1.25rem; font-family: 'Space Grotesk', sans-serif; border: 1px solid rgba(79,142,247,0.2); }
-    .project-card h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.75rem; letter-spacing: -0.02em; color: var(--text); position: relative; z-index: 1; }
-    .project-card p { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.7; position: relative; z-index: 1; }
-    .project-metrics { display: flex; gap: 1.5rem; margin-bottom: 1.25rem; padding: 1rem; background: rgba(79,142,247,0.04); border-radius: 8px; border: 1px solid var(--border); position: relative; z-index: 1; }
-    .metric { text-align: center; }
-    .metric-value { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent2); }
-    .metric-label { font-size: 0.68rem; color: var(--muted); margin-top: 0.2rem; }
-    .project-insight { font-size: 0.82rem; color: var(--muted); font-style: italic; border-left: 2px solid var(--accent); padding-left: 0.85rem; margin-bottom: 1.25rem; line-height: 1.65; opacity: 0.8; position: relative; z-index: 1; }
-    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; position: relative; z-index: 1; }
-    .stack-tag { background: var(--soft); border: 1px solid var(--border); color: var(--muted); font-size: 0.7rem; padding: 0.2rem 0.65rem; border-radius: 6px; font-family: 'Space Grotesk', sans-serif; }
-    .project-cta { font-size: 0.82rem; font-weight: 600; color: var(--muted); transition: all 0.2s; display: flex; align-items: center; gap: 0.35rem; font-family: 'Space Grotesk', sans-serif; position: relative; z-index: 1; }
-
-    /* BUTTONS */
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.8rem; border-radius: 8px; font-size: 0.88rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.01em; }
-    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 0 20px rgba(79,142,247,0.2); }
-    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow), 0 0 30px rgba(79,142,247,0.25); }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    /* CONTACT */
-    .contact-inner { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 3.5rem; text-align: center; position: relative; overflow: hidden; }
-    .contact-inner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(79,142,247,0.07) 0%, transparent 70%); }
-    .contact-glow { position: absolute; bottom: -2rem; right: -2rem; width: 200px; height: 200px; background: radial-gradient(circle, rgba(79,142,247,0.08) 0%, transparent 70%); pointer-events: none; }
-    .contact-arrow { position: absolute; bottom: -1rem; right: 2rem; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 8rem; color: var(--accent); opacity: 0.04; line-height: 1; pointer-events: none; user-select: none; }
-    .contact-inner h2 { margin-bottom: 1rem; position: relative; }
-    .contact-inner > p { color: var(--muted); max-width: 420px; margin: 0 auto 2rem; position: relative; }
-    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; }
-    .footer-arrow { color: var(--accent); font-size: 0.88rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem; transition: gap 0.2s; font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
-    .footer-arrow:hover { gap: 0.6rem; }
-
-    /* DIVIDER */
-    .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
-
-    /* REVEAL */
-    .js-loaded .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-    .js-loaded .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* CURSOR */
-    .cursor-dot { position: fixed; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%,-50%); box-shadow: 0 0 8px var(--accent); }
-    .cursor-ring { position: fixed; width: 28px; height: 28px; border: 1px solid rgba(79,142,247,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, border-color 0.2s; }
-    .cursor-ring.hovering { width: 44px; height: 44px; border-color: var(--accent); background: rgba(79,142,247,0.04); }
-
-    /* TOAST */
-    .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--surface); border: 1px solid var(--border); color: var(--text); padding: 0.7rem 1.4rem; border-radius: 100px; font-size: 0.82rem; z-index: 9999; transition: transform 0.3s ease; pointer-events: none; box-shadow: 0 4px 20px rgba(0,0,0,0.3); font-family: 'Space Grotesk', sans-serif; }
-    .toast.show { transform: translateX(-50%) translateY(0); }
-
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; } nav ul { gap: 1.2rem; }
-      .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .hero { padding-top: 7rem; } .hero-scroll { left: 1.5rem; }
-      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
-      .contact-inner { padding: 2rem 1.5rem; }
-      .hero-deco-br { display: none; }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jack Zhang | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <nav>
-    <a href="#home" class="nav-logo">Jack<span>.</span></a>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="theme-toggle" id="themeToggle" title="Toggle light mode">☀️</button>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">Jack Zhang</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle">Dark Mode</button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
-    <canvas id="particle-canvas"></canvas>
-
-    <div class="hero-deco-br">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 90 L90 10 M55 10 L90 10 L90 45" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-
     <div class="hero-content">
-      <div class="hero-tag">Open to opportunities</div>
-      <h1>Jack Zhang<span class="line2"><span class="accent">Designer</span> · Thinker</span></h1>
-      <p class="hero-sub">CCIT student at <strong>UTM</strong> focused on <strong>UX/UI design</strong> and <strong>product strategy</strong>. I stopped complaining about bad products and started fixing them.</p>
-      <p class="hero-pov">"The best products solve problems people couldn't articulate themselves."</p>
-      <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">Learn About Me →</a>
-        <a href="#projects" class="btn btn-ghost">View Projects</a>
+      <p class="hero-greeting">Hi, I'm</p>
+      <h1 class="hero-name">Jack Zhang</h1>
+      <p class="hero-title">UX/UI Designer &amp; Web Developer</p>
+      <p class="hero-desc">
+        CCIT student at the University of Toronto Mississauga. I build things that are
+        both beautiful and useful — and I'm always learning how to do it better.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
       </div>
-      <div class="hero-arrow-hint">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 4 L12 20 M6 14 L12 20 L18 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Scroll to explore
-      </div>
-    </div>
-
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      JazheZhang.github.io
     </div>
   </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot"></span>UX/UI Design</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Product Strategy</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Accessibility</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Figma</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Case Competitions</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>HTML · CSS · JS</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>CCIT @ UTM</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Open to Internships</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>B2B Thinking</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Empathy-Driven Research</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>UX/UI Design</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Product Strategy</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Accessibility</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Figma</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Case Competitions</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>HTML · CSS · JS</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>CCIT @ UTM</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Open to Internships</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>B2B Thinking</span>
-      <span class="marquee-item"><span class="marquee-dot"></span>Empathy-Driven Research</span>
-    </div>
-  </div>
-
-  <div class="divider"></div>
 
   <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label">Who I am</p>
-    <h2>About Me</h2>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p>Hey, I'm <strong>Jack Zhang</strong>, a CCIT student at the <strong>University of Toronto Mississauga</strong>. I got into product because I realized I had the power to change something tangible. Instead of being the person who complains about bad design, I decided to become the person who fixes it.</p>
-        <p>I'm working toward a career in <strong>UX/UI design and product management</strong>. I think about why products succeed or fail: not just how they look, but how they create real value for users and businesses alike. I've competed in accessibility case competitions, shipped designs under 4-hour time constraints, and built this site from scratch.</p>
-        <p>Outside of class, I'm constantly building, competing, and exploring. I believe the people who make the best products are the ones who combine creative empathy with commercial clarity.</p>
-        <div class="about-pov">"The best products solve problems people couldn't articulate themselves. My job is to find those problems before anyone else does."</div>
-        <div class="about-float">
-          <span class="float-tag"><span class="arrow">→</span> UTM · CCIT</span>
-          <span class="float-tag"><span class="arrow">→</span> UX/UI Path</span>
-          <span class="float-tag"><span class="arrow">→</span> PM Goals</span>
-          <span class="float-tag"><span class="arrow">→</span> Toronto, ON</span>
-          <span class="float-tag"><span class="arrow">→</span> Open to Intern Roles</span>
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a CCIT student at UTM with a passion for design and product thinking.
+            I got into this field because I wanted to stop complaining about bad products
+            and start fixing them.
+          </p>
+          <p>
+            I've competed in accessibility and product design case competitions, built this
+            website from scratch, and I'm working toward a career in UX/UI design and
+            product management.
+          </p>
+          <p>
+            Outside of class I'm constantly building, competing, and exploring new ideas.
+            I believe the best products solve problems people couldn't even articulate themselves.
+          </p>
         </div>
-        <div style="margin-top: 2rem;">
-          <a href="#contact" class="btn btn-primary">Let's Connect →</a>
+        <div class="about-info">
+          <ul class="info-list">
+            <li><span class="info-label">Name:</span> Jack Zhang</li>
+            <li><span class="info-label">School:</span> University of Toronto Mississauga</li>
+            <li><span class="info-label">Program:</span> CCIT</li>
+            <li><span class="info-label">Location:</span> Toronto, ON</li>
+            <li><span class="info-label">Email:</span> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcfdc6d4d9d6dddfd7fcdbd1ddd5d092dfd3d1">[email&#160;protected]</a></li>
+            <li><span class="info-label">Status:</span> Open to internships</li>
+          </ul>
+          <a href="/cdn-cgi/l/email-protection#88c9f2e0ede2e9ebe3c8efe5e9e1e4a6ebe7e5" class="btn btn-primary contact-btn">Contact Me</a>
         </div>
       </div>
     </div>
   </section>
-
-  <div class="divider"></div>
 
   <!-- SKILLS -->
-  <section id="skills">
-    <p class="section-label">What I bring</p>
-    <h2>Skills &amp; Tools</h2>
-    <div class="skills-grid reveal">
-      <div class="skill-card"><div class="skill-name">UX/UI Design</div><div class="skill-desc">User-centered design, visual hierarchy, interaction design</div></div>
-      <div class="skill-card"><div class="skill-name">HTML / CSS</div><div class="skill-desc">Semantic markup, responsive layouts, modern CSS</div></div>
-      <div class="skill-card"><div class="skill-name">JavaScript</div><div class="skill-desc">DOM manipulation, logic, interactive UIs</div></div>
-      <div class="skill-card"><div class="skill-name">Figma</div><div class="skill-desc">Wireframes, prototypes, design systems</div></div>
-      <div class="skill-card"><div class="skill-name">Problem Solving</div><div class="skill-desc">Breaking down complex challenges analytically</div></div>
-      <div class="skill-card"><div class="skill-name">Product Thinking</div><div class="skill-desc">User needs, market fit, KPIs &amp; metrics</div></div>
-      <div class="skill-card"><div class="skill-name">UX Research</div><div class="skill-desc">User interviews, journey mapping, testing</div></div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <p class="section-label">What I've built</p>
-    <h2>Featured Projects</h2>
-    <div class="projects-grid reveal">
-
-      <a href="squirl.html" class="project-card">
-        <span class="project-tag">Accessibility Case Comp</span>
-        <h3>Squirl Signs · ASL Translation App</h3>
-        <p>Led research and product strategy for a startup targeting 430,000+ deaf and hard-of-hearing Canadians. Designed onboarding, live ASL translation, and accessibility flows across three distinct user profiles.</p>
-        <div class="project-metrics">
-          <div class="metric"><div class="metric-value">430K+</div><div class="metric-label">Addressable users</div></div>
-          <div class="metric"><div class="metric-value">3</div><div class="metric-label">User segments</div></div>
-          <div class="metric"><div class="metric-value">D2C</div><div class="metric-label">Consumer model</div></div>
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>UX / UI Design</h3>
+          <p>User research, wireframing, prototyping, and visual design with a user-centered approach.</p>
         </div>
-        <div class="project-stack">
-          <span class="stack-tag">Figma</span><span class="stack-tag">UX Research</span><span class="stack-tag">Accessibility</span><span class="stack-tag">Prototyping</span>
+        <div class="skill-card">
+          <h3>HTML &amp; CSS</h3>
+          <p>Semantic HTML, responsive layouts using Flexbox and CSS Grid, and clean external stylesheets.</p>
         </div>
-        <div class="project-cta">View case study <span>→</span></div>
-      </a>
-
-      <a href="match.html" class="project-card">
-        <span class="project-tag">Designathon · 4 Hours</span>
-        <h3>Match · First-Year Mentorship App</h3>
-        <p>Scoped and prototyped a B2B mentorship platform for universities. Framed first-year attrition as a revenue problem and designed a peer-matching solution that scales without adding headcount.</p>
-        <div class="project-metrics">
-          <div class="metric"><div class="metric-value">4hr</div><div class="metric-label">Design sprint</div></div>
-          <div class="metric"><div class="metric-value">B2B</div><div class="metric-label">University licensing</div></div>
-          <div class="metric"><div class="metric-value">2</div><div class="metric-label">User flows</div></div>
+        <div class="skill-card">
+          <h3>JavaScript</h3>
+          <p>DOM manipulation, event listeners, and interactive UI elements.</p>
         </div>
-        <div class="project-stack">
-          <span class="stack-tag">Figma</span><span class="stack-tag">Rapid Prototyping</span><span class="stack-tag">User Flow</span><span class="stack-tag">Designathon</span>
+        <div class="skill-card">
+          <h3>Figma</h3>
+          <p>Wireframes, hi-fi prototypes, and component-based design.</p>
         </div>
-        <div class="project-cta">View case study <span>→</span></div>
-      </a>
-
-      <a href="#projects" class="project-card">
-        <span class="project-tag">Web Dev</span>
-        <h3>This Portfolio Website</h3>
-        <p>I needed a place to show my work that felt like me — not a template. Built from scratch in HTML, CSS, and JavaScript. Multiple color schemes tested, dark mode is the default because that's how I live.</p>
-        <div class="project-insight">"A portfolio built on a template tells me you can follow instructions. A portfolio built from scratch tells me how you think."</div>
-        <div class="project-stack">
-          <span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span><span class="stack-tag">GitHub Pages</span>
+        <div class="skill-card">
+          <h3>Product Thinking</h3>
+          <p>Identifying user needs, commercial framing, KPIs, and go-to-market strategy.</p>
         </div>
-        <div class="project-cta">You're looking at it <span>→</span></div>
-      </a>
-
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-inner reveal">
-      <div class="contact-glow"></div>
-      <div class="contact-arrow">↗</div>
-      <p class="section-label">Say hello</p>
-      <h2>Let's Work Together</h2>
-      <p>I'm open to internships, collaborations, and conversations about design, tech, and product.</p>
-      <div class="contact-links">
-        <a href="#" class="btn btn-primary" id="emailBtn">Email Me →</a>
-        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" rel="noopener" class="btn btn-primary">LinkedIn →</a>
-        <a href="https://github.com/JazheZhang" target="_blank" rel="noopener" class="btn btn-primary">GitHub →</a>
+        <div class="skill-card">
+          <h3>UX Research</h3>
+          <p>Competitor analysis, empathy research, user journey mapping, and insight synthesis.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <span>© 2026 Jack Zhang · Built with HTML, CSS &amp; JS</span>
-    <a href="#home" class="footer-arrow">Back to top ↑</a>
-  </footer>
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
 
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-  <div class="toast" id="toast"></div>
+        <div class="project-card">
+          <div class="project-tag">Accessibility Case Comp</div>
+          <h3>Squirl Signs</h3>
+          <p>
+            Designed a mobile app for a startup serving 430,000+ deaf and hard-of-hearing
+            Canadians. Led research and designed onboarding flows for three distinct user
+            profiles: Deaf, hard-of-hearing, and hearing allies.
+          </p>
+          <div class="project-stack">
+            <span class="tag">Figma</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Accessibility</span>
+          </div>
+          <a href="squirl.html" class="btn btn-outline">View Case Study &rarr;</a>
+        </div>
 
-  <script>
-    document.body.classList.add('js-loaded');
+        <div class="project-card">
+          <div class="project-tag">Designathon &mdash; 4 Hours</div>
+          <h3>Match</h3>
+          <p>
+            Designed a B2B mentorship platform for universities in a 4-hour sprint.
+            Framed first-year attrition as a revenue problem and built a peer-matching
+            solution that scales without adding headcount.
+          </p>
+          <div class="project-stack">
+            <span class="tag">Figma</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">B2B Strategy</span>
+          </div>
+          <a href="match.html" class="btn btn-outline">View Case Study &rarr;</a>
+        </div>
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-      });
-    });
+        <div class="project-card">
+          <div class="project-tag">Web Development</div>
+          <h3>This Portfolio</h3>
+          <p>
+            Built from scratch using HTML, CSS, and JavaScript. No frameworks or templates.
+            Every line written by hand. Fully responsive across mobile and desktop screen sizes.
+          </p>
+          <div class="project-stack">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <a href="#home" class="btn btn-outline">You're Looking at It &rarr;</a>
+        </div>
 
-    // Light mode toggle (dark is default)
-    const toggle = document.getElementById('themeToggle');
-    let light = false;
-    toggle.addEventListener('click', () => {
-      light = !light;
-      document.body.classList.toggle('light', light);
-      toggle.textContent = light ? '🌙' : '☀️';
-      showToast(light ? 'Light mode on' : 'Dark mode on');
-    });
+      </div>
+    </div>
+  </section>
 
-    // Scroll reveal
-    const revealObserver = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-    // Active nav
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
-    });
-
-    // Particles
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-    resizeCanvas(); window.addEventListener('resize', resizeCanvas);
-    const particles = Array.from({ length: 60 }, () => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.2 + 0.3, dx: (Math.random() - 0.5) * 0.2, dy: (Math.random() - 0.5) * 0.2, o: Math.random() * 0.25 + 0.05 }));
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = `rgba(79,142,247,${p.o})`; ctx.fill(); p.x += p.dx; p.y += p.dy; if (p.x < 0 || p.x > canvas.width) p.dx *= -1; if (p.y < 0 || p.y > canvas.height) p.dy *= -1; });
-      requestAnimationFrame(drawParticles);
-    }
-    drawParticles();
-
-    // Custom cursor
-    const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
-    (function animateCursor() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateCursor); })();
-    document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => { el.addEventListener('mouseenter', () => ring.classList.add('hovering')); el.addEventListener('mouseleave', () => ring.classList.remove('hovering')); });
-
-    // Toast + email
-    const toastEl = document.getElementById('toast');
-    let toastTimer;
-    function showToast(msg) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200); }
-    window.addEventListener('load', () => {
-      setTimeout(() => showToast("Welcome to Jack's portfolio"), 900);
-      const e = document.getElementById('emailBtn');
-      if (e) e.setAttribute('href', 'mailto:' + 'Azhejack' + '@' + 'gmail.com');
-    });
-  </script>
-</body>
-</html>
+  <!-- CONTACT -->
+  <section class="section section-alt" id="contact">
+    <div class="container contact-container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="contact-intro">
+        I'm open to internships, collaborations, and conversations about design and product.
+        Feel free to reach out any time.
+      </p>
+      <div class="contact-links">
+        <a href="/cdn-cgi/l/email-protection#dc9da6b4b9b6bdbfb79cbbb1bdb5b0f2bfb3b1" class="btn btn-primary">Email Me</a>
+        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" class="btn btn-outline">LinkedIn</a>
+        <a href="https://github.com/JazheZhang" target="_blank" class="btn btn-outline">GitHub</a>
+      </div>
+    </div>
