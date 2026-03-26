@@ -7,8 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg: #080c14; --surface: #0d1220; --border: #1a2236; --accent: #4f8ef7; --accent2: #a5c4fd; --text: #f0f2f7; --muted: #7a8aaa; --card: #0d1220; --nav-bg: rgba(8,12,20,0.92); --shadow: rgba(79,142,247,0.18); --soft: #0f1526; }
-    body.light { --bg: #f4f6fb; --surface: #ffffff; --border: #dde3f0; --accent: #2563eb; --accent2: #3b82f6; --text: #0f172a; --muted: #64748b; --card: #ffffff; --nav-bg: rgba(244,246,251,0.93); --soft: #eef1f9; --shadow: rgba(37,99,235,0.15); }
+    :root { --bg: #080c14; --surface: #0d1220; --border: #1a2236; --accent: #7aaeff; --accent2: #c2d8ff; --text: #f0f2f7; --muted: #aab4cc; --card: #0d1220; --nav-bg: rgba(8,12,20,0.92); --shadow: rgba(122,174,255,0.18); --soft: #0f1526; }
+    body.light { --bg: #f4f6fb; --surface: #ffffff; --border: #dde3f0; --accent: #1a3fa8; --accent2: #2558cc; --text: #0f172a; --muted: #374151; --card: #ffffff; --nav-bg: rgba(244,246,251,0.93); --soft: #eef1f9; --shadow: rgba(26,63,168,0.15); }
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; transition: background 0.4s, color 0.4s; }
 
@@ -20,7 +20,7 @@
     .theme-toggle { background: var(--surface); border: 1px solid var(--border); color: var(--text); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 
     .case-hero { padding: 10rem 4rem 5rem; max-width: 900px; margin: 0 auto; }
-    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(79,142,247,0.09); border: 1px solid rgba(79,142,247,0.22); color: var(--accent); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
+    .case-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(122,174,255,0.09); border: 1px solid rgba(122,174,255,0.22); color: var(--accent); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.5rem; }
     .case-hero h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1.25rem; color: var(--text); }
     .case-hero .subtitle { font-size: 1.15rem; color: var(--muted); max-width: 620px; margin-bottom: 2.5rem; }
     .case-hero .subtitle strong { color: var(--text); font-weight: 500; }
@@ -36,7 +36,7 @@
     .case-section p { color: var(--muted); margin-bottom: 1.1rem; font-size: 1rem; line-height: 1.75; }
     .case-section p strong { color: var(--text); font-weight: 500; }
 
-    .highlight-box { background: rgba(79,142,247,0.06); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.7; }
+    .highlight-box { background: rgba(122,174,255,0.06); border-left: 3px solid var(--accent); border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text); font-size: 0.95rem; line-height: 1.7; }
 
     .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
     .process-step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; }
