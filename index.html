@@ -10,29 +10,29 @@
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#home" class="nav-logo">JZ<span class="logo-dot">.</span></a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu">&#9776;</button>
-      <ul class="nav-links" id="nav-links">
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
+      <ul class="nav-links" id="nav-links" role="list">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-        <span class="toggle-icon">&#9790;</span>
+        <span class="toggle-icon" aria-hidden="true">&#9790;</span>
         <span class="toggle-text">Dark</span>
       </button>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg-shape"></div>
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <div class="hero-bg-shape" aria-hidden="true"></div>
     <div class="hero-content">
-      <div class="hero-badge">&#x2022; Open to internships</div>
-      <h1 class="hero-name">
+      <div class="hero-badge" role="note">Open to internships</div>
+      <h1 class="hero-name" id="hero-heading">
         Jack<br>
         <span class="hero-name-accent">Zhang.</span>
       </h1>
@@ -42,14 +42,15 @@
         and started fixing them.
       </p>
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View My Work &#8594;</a>
+        <a href="#projects" class="btn btn-primary">View My Work</a>
         <a href="#contact" class="btn btn-outline">Say Hello</a>
       </div>
-      <div class="hero-scroll-hint">
-        <span class="scroll-arrow">&#8595;</span> Scroll to explore
-      </div>
+      <p class="hero-scroll-hint">
+        <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
+        Scroll to explore
+      </p>
     </div>
-    <div class="hero-side">
+    <div class="hero-side" aria-label="Quick facts">
       <div class="hero-card">
         <div class="hero-card-label">Currently</div>
         <div class="hero-card-value">Building &amp; Learning</div>
@@ -66,11 +67,11 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="section" id="about">
+  <section class="section" id="about" aria-labelledby="about-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-number">01</span>
-        <h2 class="section-title">About Me</h2>
+        <span class="section-number" aria-hidden="true">01</span>
+        <h2 class="section-title" id="about-heading">About Me</h2>
       </div>
       <div class="about-grid">
         <div class="about-text">
@@ -90,23 +91,22 @@
             I believe the best products solve problems people couldn't
             even articulate themselves.
           </p>
-          <!-- Contact Me scrolls to #contact section, NOT external link -->
-          <a href="#contact" class="btn btn-primary about-cta">Let's Connect &#8594;</a>
+          <a href="#contact" class="btn btn-primary about-cta">Let's Connect</a>
         </div>
-        <div class="about-facts">
-          <div class="fact-card">
+        <div class="about-facts" role="list" aria-label="Key stats">
+          <div class="fact-card" role="listitem">
             <span class="fact-number">2</span>
             <span class="fact-label">Case Competitions</span>
           </div>
-          <div class="fact-card">
+          <div class="fact-card" role="listitem">
             <span class="fact-number">3</span>
             <span class="fact-label">Projects Shipped</span>
           </div>
-          <div class="fact-card">
+          <div class="fact-card" role="listitem">
             <span class="fact-number">430K+</span>
             <span class="fact-label">Users Designed For</span>
           </div>
-          <div class="fact-card">
+          <div class="fact-card" role="listitem">
             <span class="fact-number">4hr</span>
             <span class="fact-label">Fastest Design Sprint</span>
           </div>
@@ -116,40 +116,40 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="section section-alt" id="skills">
+  <section class="section section-alt" id="skills" aria-labelledby="skills-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-number">02</span>
-        <h2 class="section-title">Skills &amp; Tools</h2>
+        <span class="section-number" aria-hidden="true">02</span>
+        <h2 class="section-title" id="skills-heading">Skills &amp; Tools</h2>
       </div>
       <div class="skills-grid">
         <div class="skill-card">
-          <div class="skill-icon">&#9998;</div>
+          <div class="skill-icon" aria-hidden="true">&#9998;</div>
           <h3>UX / UI Design</h3>
           <p>User research, wireframing, prototyping, and visual design with a user-centered approach.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">&#60;/&#62;</div>
+          <div class="skill-icon" aria-hidden="true">&#60;/&#62;</div>
           <h3>HTML &amp; CSS</h3>
           <p>Semantic HTML, responsive layouts using Flexbox and CSS Grid, and clean external stylesheets.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">&#9711;</div>
+          <div class="skill-icon" aria-hidden="true">&#9711;</div>
           <h3>JavaScript</h3>
           <p>DOM manipulation, event listeners, and interactive UI elements.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">&#9670;</div>
+          <div class="skill-icon" aria-hidden="true">&#9670;</div>
           <h3>Figma</h3>
           <p>Wireframes, hi-fi prototypes, and component-based design systems.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">&#9650;</div>
+          <div class="skill-icon" aria-hidden="true">&#9650;</div>
           <h3>Product Thinking</h3>
           <p>Identifying user needs, commercial framing, KPIs, and go-to-market strategy.</p>
         </div>
         <div class="skill-card">
-          <div class="skill-icon">&#9679;</div>
+          <div class="skill-icon" aria-hidden="true">&#9679;</div>
           <h3>UX Research</h3>
           <p>Competitor analysis, empathy research, user journey mapping, and insight synthesis.</p>
         </div>
@@ -158,36 +158,34 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="section" id="projects">
+  <section class="section" id="projects" aria-labelledby="projects-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-number">03</span>
-        <h2 class="section-title">Projects</h2>
+        <span class="section-number" aria-hidden="true">03</span>
+        <h2 class="section-title" id="projects-heading">Projects</h2>
       </div>
       <div class="projects-grid">
 
-        <div class="project-card">
+        <article class="project-card">
           <div class="project-header">
             <div class="project-tag">Accessibility Case Comp</div>
-            <div class="project-arrow">&#8599;</div>
           </div>
           <h3>Squirl Signs</h3>
           <p>
             Designed a mobile app for a startup serving 430,000+ deaf and hard-of-hearing
             Canadians. Designed onboarding flows for three distinct user profiles.
           </p>
-          <div class="project-stack">
+          <div class="project-stack" aria-label="Technologies used">
             <span class="tag">Figma</span>
             <span class="tag">UX Research</span>
             <span class="tag">Accessibility</span>
           </div>
-          <a href="squirl.html" class="btn btn-outline project-btn">View Case Study &#8594;</a>
-        </div>
+          <a href="squirl.html" class="btn btn-outline project-btn">View Case Study</a>
+        </article>
 
-        <div class="project-card project-card-featured">
+        <article class="project-card project-card-featured">
           <div class="project-header">
-            <div class="project-tag project-tag-featured">Designathon &mdash; 4 hrs</div>
-            <div class="project-arrow">&#8599;</div>
+            <div class="project-tag project-tag-featured">Designathon — 4 hrs</div>
           </div>
           <h3>Match</h3>
           <p>
@@ -195,42 +193,41 @@
             revenue problem and designed a peer-matching solution that scales without
             adding headcount.
           </p>
-          <div class="project-stack">
+          <div class="project-stack" aria-label="Technologies used">
             <span class="tag">Figma</span>
             <span class="tag">Prototyping</span>
             <span class="tag">B2B Strategy</span>
           </div>
-          <a href="match.html" class="btn btn-primary project-btn">View Case Study &#8594;</a>
-        </div>
+          <a href="match.html" class="btn btn-primary project-btn">View Case Study</a>
+        </article>
 
-        <div class="project-card">
+        <article class="project-card">
           <div class="project-header">
             <div class="project-tag">Web Development</div>
-            <div class="project-arrow">&#8599;</div>
           </div>
           <h3>This Portfolio</h3>
           <p>
             Built from scratch using HTML, CSS, and JavaScript. No frameworks,
             no templates. Fully responsive. Every line written by hand.
           </p>
-          <div class="project-stack">
+          <div class="project-stack" aria-label="Technologies used">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
           </div>
-          <a href="#home" class="btn btn-outline project-btn">You're Looking at It &#8594;</a>
-        </div>
+          <a href="#home" class="btn btn-outline project-btn">You're Looking at It</a>
+        </article>
 
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section class="section contact-section" id="contact">
+  <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
     <div class="container contact-container">
-      <div class="section-header">
-        <span class="section-number">04</span>
-        <h2 class="section-title">Get in Touch</h2>
+      <div class="section-header" style="justify-content: center;">
+        <span class="section-number" aria-hidden="true">04</span>
+        <h2 class="section-title" id="contact-heading">Get in Touch</h2>
       </div>
       <p class="contact-intro">
         I'm open to internships, collaborations, and conversations about
@@ -238,16 +235,16 @@
       </p>
       <div class="contact-links">
         <a href="mailto:Azhejack@gmail.com" class="btn btn-primary">Email Me</a>
-        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" class="btn btn-outline">LinkedIn &#8599;</a>
-        <a href="https://github.com/JazheZhang" target="_blank" class="btn btn-outline">GitHub &#8599;</a>
+        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn <span aria-label="(opens in new tab)">&#8599;</span></a>
+        <a href="https://github.com/JazheZhang" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub <span aria-label="(opens in new tab)">&#8599;</span></a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
-    <a href="#home" class="footer-top">Back to top &#8593;</a>
+    <a href="#home" class="footer-top">Back to top</a>
   </footer>
 
   <script src="script.js"></script>
