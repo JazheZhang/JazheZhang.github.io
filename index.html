@@ -4,249 +4,105 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jack Zhang | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- NAVIGATION -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
+  <nav class="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">JZ<span class="logo-dot">.</span></a>
-      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">&#9776;</button>
-      <ul class="nav-links" id="nav-links" role="list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <a href="index.html" class="nav-logo">JZ<span class="logo-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="process.html">Process</a></li>
       </ul>
-      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
-        <span class="toggle-icon" aria-hidden="true">&#9790;</span>
-        <span class="toggle-text">Dark</span>
-      </button>
+      <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero" id="home" aria-labelledby="hero-heading">
-    <div class="hero-bg-shape" aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="hero-badge" role="note">Open to internships</div>
-      <h1 class="hero-name" id="hero-heading">
-        Jack<br>
-        <span class="hero-name-accent">Zhang.</span>
-      </h1>
-      <p class="hero-title">UX/UI Designer &amp; Web Developer</p>
-      <p class="hero-desc">
-        CCIT student at UTM. I stopped complaining about bad products
-        and started fixing them.
-      </p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View My Work</a>
-        <a href="#contact" class="btn btn-outline">Say Hello</a>
-      </div>
-      <p class="hero-scroll-hint">
-        <span class="scroll-arrow" aria-hidden="true">&#8595;</span>
-        Scroll to explore
-      </p>
-    </div>
-    <div class="hero-side" aria-label="Quick facts">
-      <div class="hero-card">
-        <div class="hero-card-label">Currently</div>
-        <div class="hero-card-value">Building &amp; Learning</div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-label">Based in</div>
-        <div class="hero-card-value">Toronto, ON</div>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-label">Program</div>
-        <div class="hero-card-value">CCIT @ UTM</div>
-      </div>
-    </div>
-  </section>
+  <!-- HERO SECTION -->
+  <main class="page-wrapper">
+    <div class="hero">
 
-  <!-- ABOUT -->
-  <section class="section" id="about" aria-labelledby="about-heading">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-number" aria-hidden="true">01</span>
-        <h2 class="section-title" id="about-heading">About Me</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            I'm a CCIT student at UTM with a passion for design and product thinking.
-            I got into this field because I realized I had the power to change something
-            tangible — instead of being the person who complains about bad design,
-            I decided to become the person who fixes it.
-          </p>
-          <p>
-            I've competed in accessibility and product design case competitions,
-            built this website from scratch, and I'm working toward a career in
-            UX/UI design and product management.
-          </p>
-          <p>
-            Outside of class I'm constantly building, competing, and exploring.
-            I believe the best products solve problems people couldn't
-            even articulate themselves.
-          </p>
-          <a href="#contact" class="btn btn-primary about-cta">Let's Connect</a>
+      <!-- Left: Text content -->
+      <div class="hero-content">
+        <div class="hero-badge">&#x2022; Open to internships &amp; opportunities</div>
+        <h1 class="hero-name">
+          Jack<br>
+          <span class="hero-name-accent">Zhang.</span>
+        </h1>
+        <p class="hero-role">UX/UI Designer &amp; Web Developer</p>
+        <p class="hero-bio">
+          CCIT student at the University of Toronto Mississauga.
+          I stopped complaining about bad products and started fixing them.
+          I combine design thinking with commercial strategy to build
+          things that are both beautiful and useful.
+        </p>
+        <div class="hero-buttons">
+          <a href="portfolio.html" class="btn btn-primary">View My Work &rarr;</a>
+          <a href="contact.html" class="btn btn-outline">Say Hello</a>
         </div>
-        <div class="about-facts" role="list" aria-label="Key stats">
-          <div class="fact-card" role="listitem">
+      </div>
+
+      <!-- Right: Photo -->
+      <div class="hero-photo-side">
+        <div class="hero-photo-frame">
+          <img src="file:///Users/jackzhang/Pictures/Photos%20Library.photoslibrary/resources/derivatives/4/4D540C97-23BB-416E-B1C7-181C8C439DD8_1_105_c.jpeg" />
+        </div>
+        <div class="hero-info-cards">
+          <div class="info-chip">
+            <span class="info-chip-label">Program</span>
+            <span class="info-chip-value">CCIT</span>
+          </div>
+          <div class="info-chip">
+            <span class="info-chip-label">School</span>
+            <span class="info-chip-value">UTM</span>
+          </div>
+          <div class="info-chip">
+            <span class="info-chip-label">City</span>
+            <span class="info-chip-value">Toronto</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- STATS STRIP -->
+    <section class="home-about">
+      <div class="container">
+        <div class="facts-row">
+          <div class="fact-card">
             <span class="fact-number">2</span>
             <span class="fact-label">Case Competitions</span>
           </div>
-          <div class="fact-card" role="listitem">
+          <div class="fact-card">
             <span class="fact-number">3</span>
             <span class="fact-label">Projects Shipped</span>
           </div>
-          <div class="fact-card" role="listitem">
+          <div class="fact-card">
             <span class="fact-number">430K+</span>
             <span class="fact-label">Users Designed For</span>
           </div>
-          <div class="fact-card" role="listitem">
+          <div class="fact-card">
             <span class="fact-number">4hr</span>
             <span class="fact-label">Fastest Design Sprint</span>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SKILLS -->
-  <section class="section section-alt" id="skills" aria-labelledby="skills-heading">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-number" aria-hidden="true">02</span>
-        <h2 class="section-title" id="skills-heading">Skills &amp; Tools</h2>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#9998;</div>
-          <h3>UX / UI Design</h3>
-          <p>User research, wireframing, prototyping, and visual design with a user-centered approach.</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#60;/&#62;</div>
-          <h3>HTML &amp; CSS</h3>
-          <p>Semantic HTML, responsive layouts using Flexbox and CSS Grid, and clean external stylesheets.</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#9711;</div>
-          <h3>JavaScript</h3>
-          <p>DOM manipulation, event listeners, and interactive UI elements.</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#9670;</div>
-          <h3>Figma</h3>
-          <p>Wireframes, hi-fi prototypes, and component-based design systems.</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#9650;</div>
-          <h3>Product Thinking</h3>
-          <p>Identifying user needs, commercial framing, KPIs, and go-to-market strategy.</p>
-        </div>
-        <div class="skill-card">
-          <div class="skill-icon" aria-hidden="true">&#9679;</div>
-          <h3>UX Research</h3>
-          <p>Competitor analysis, empathy research, user journey mapping, and insight synthesis.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="section" id="projects" aria-labelledby="projects-heading">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-number" aria-hidden="true">03</span>
-        <h2 class="section-title" id="projects-heading">Projects</h2>
-      </div>
-      <div class="projects-grid">
-
-        <article class="project-card">
-          <div class="project-header">
-            <div class="project-tag">Accessibility Case Comp</div>
-          </div>
-          <h3>Squirl Signs</h3>
-          <p>
-            Designed a mobile app for a startup serving 430,000+ deaf and hard-of-hearing
-            Canadians. Designed onboarding flows for three distinct user profiles.
-          </p>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="tag">Figma</span>
-            <span class="tag">UX Research</span>
-            <span class="tag">Accessibility</span>
-          </div>
-          <a href="squirl.html" class="btn btn-outline project-btn">View Case Study</a>
-        </article>
-
-        <article class="project-card project-card-featured">
-          <div class="project-header">
-            <div class="project-tag project-tag-featured">Designathon — 4 hrs</div>
-          </div>
-          <h3>Match</h3>
-          <p>
-            B2B mentorship platform for universities. Framed first-year attrition as a
-            revenue problem and designed a peer-matching solution that scales without
-            adding headcount.
-          </p>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="tag">Figma</span>
-            <span class="tag">Prototyping</span>
-            <span class="tag">B2B Strategy</span>
-          </div>
-          <a href="match.html" class="btn btn-primary project-btn">View Case Study</a>
-        </article>
-
-        <article class="project-card">
-          <div class="project-header">
-            <div class="project-tag">Web Development</div>
-          </div>
-          <h3>This Portfolio</h3>
-          <p>
-            Built from scratch using HTML, CSS, and JavaScript. No frameworks,
-            no templates. Fully responsive. Every line written by hand.
-          </p>
-          <div class="project-stack" aria-label="Technologies used">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-          </div>
-          <a href="#home" class="btn btn-outline project-btn">You're Looking at It</a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section contact-section" id="contact" aria-labelledby="contact-heading">
-    <div class="container contact-container">
-      <div class="section-header" style="justify-content: center;">
-        <span class="section-number" aria-hidden="true">04</span>
-        <h2 class="section-title" id="contact-heading">Get in Touch</h2>
-      </div>
-      <p class="contact-intro">
-        I'm open to internships, collaborations, and conversations about
-        design and product. Feel free to reach out any time.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:Azhejack@gmail.com" class="btn btn-primary">Email Me</a>
-        <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn <span aria-label="(opens in new tab)">&#8599;</span></a>
-        <a href="https://github.com/JazheZhang" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub <span aria-label="(opens in new tab)">&#8599;</span></a>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- FOOTER -->
-  <footer class="footer" role="contentinfo">
+  <footer class="footer">
     <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
-    <a href="#home" class="footer-top">Back to top</a>
+    <a href="#" class="footer-top">Back to top &uarr;</a>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
