@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Process | Jack Zhang</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">JZ<span class="logo-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="process.html" class="active">Process</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+      <div class="container">
+        <h1>My Process</h1>
+        <p>How I planned, designed, and built this website — including wireframes, accessibility decisions, and references.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+
+        <p class="process-intro">
+          This page documents the design and development process behind my portfolio website.
+          It covers the planning phase (wireframes), accessibility compliance, and references
+          for any external assets used. This transparency is part of good design practice.
+        </p>
+
+        <!-- SECTION 1: PLANNING & WIREFRAMES -->
+        <div class="process-block">
+          <h3>01 &mdash; Planning &amp; Wireframes</h3>
+          <p>
+            Before writing any code, I planned the site structure by sketching low-fidelity
+            wireframes for each of the five pages. The goal was to decide on layout,
+            navigation hierarchy, and content placement before worrying about visual design.
+          </p>
+          <p>
+            I decided early on to use a consistent fixed navigation bar across all pages
+            so users always know where they are and can navigate freely. The hero section
+            on the home page was designed to communicate who I am in under 5 seconds.
+          </p>
+
+          <!-- Real wireframe/process images -->
+          <div class="wireframe-grid">
+            <div class="wireframe-item">
+              <img src="file:///var/folders/kp/_1dtym095zx8brh3vkd_n54m0000gn/T/TemporaryItems/NSIRD_screencaptureui_ISt7kE/Screenshot%202026-03-30%20at%2009.21.58.png" style="transform: rotate(-90deg);" />
+            </div>
+
+        <!-- SECTION 2: DESIGN DECISIONS -->
+        <div class="process-block">
+          <h3>02 &mdash; Design Decisions</h3>
+          <p>
+            <strong>Typography:</strong> I chose the Outfit font from Google Fonts because
+            it is modern, highly legible, and has a personality that feels professional
+            without being stiff. It works well at both large headline sizes and small
+            body text sizes.
+          </p>
+          <p>
+            <strong>Colour Palette:</strong> The primary colour is a deep navy blue
+            (#1a3fa8 in light mode, #7aaeff in dark mode). I chose blue because it
+            communicates trust and professionalism, which is appropriate for a portfolio
+            targeting employers. All colour combinations were tested for WCAG AAA compliance.
+          </p>
+          <p>
+            <strong>Layout:</strong> I used CSS Grid for the portfolio gallery (a 3-column
+            responsive grid that collapses to 2 columns on tablet and 1 column on mobile)
+            and CSS Flexbox for the resume layout (date on the left, details on the right).
+            No HTML tables were used for page layout.
+          </p>
+          <p>
+            <strong>Dark Mode:</strong> I implemented a dark mode toggle using JavaScript
+            and CSS custom properties (variables). The user's preference is saved in
+            localStorage so it persists across page visits.
+          </p>
+        </div>
+
+        <!-- SECTION 3: ACCESSIBILITY -->
+        <div class="process-block">
+          <h3>03 &mdash; Accessibility (WCAG 2.0 Compliance)</h3>
+          <p>
+            Accessibility was a core requirement, not an afterthought. Below is a list
+            of specific steps I took to ensure the site meets WCAG 2.0 guidelines.
+          </p>
+
+          <div class="a11y-list">
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Colour Contrast (WCAG AAA — 7:1 ratio):</strong> All text and
+                background colour combinations were tested using a contrast ratio calculator.
+                Main text (#0d1330) on background (#f0f2f8) achieves a ratio of 14.4:1.
+                Muted text (#374151) on background achieves 9.6:1. Both exceed the AAA
+                minimum of 7:1.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Alt Text on Images:</strong> Every image on the site has a
+                descriptive alt attribute. Decorative icons use aria-hidden="true" so
+                screen readers skip them. Photo placeholders include instructional alt text.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Semantic HTML:</strong> I used proper HTML5 semantic elements
+                throughout: &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt;,
+                &lt;h1&gt; through &lt;h4&gt;, and &lt;label&gt; elements linked to
+                all form inputs.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Form Accessibility:</strong> Every form input on the Contact page
+                has a visible &lt;label&gt; element with a matching "for" attribute.
+                Required fields use aria-required="true". The form uses novalidate and
+                handles validation feedback visually.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Keyboard Navigation:</strong> All interactive elements (links,
+                buttons, form inputs) are reachable and usable via keyboard Tab navigation.
+                Focus states are visible through the browser's default outline.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Responsive Design:</strong> The site is tested at 375px (mobile)
+                and 1200px+ (desktop). No horizontal scrolling occurs. Text remains
+                readable without zooming on all screen sizes.
+              </span>
+            </div>
+            <div class="a11y-item">
+              <span class="a11y-check" aria-hidden="true">&#10003;</span>
+              <span>
+                <strong>Iframe Title:</strong> The embedded Google Map iframe includes
+                a title attribute describing its content, making it accessible to
+                screen reader users.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 4: REFERENCES -->
+        <div class="process-block">
+          <h3>04 &mdash; References (APA Format)</h3>
+          <p>
+            The following external resources were used in the development of this website.
+          </p>
+
+          <div class="references-list">
+
+            <div class="reference-item">
+              Google LLC. (2024). <em>Google Fonts: Outfit.</em> Google Fonts.
+              https://fonts.google.com/specimen/Outfit
+            </div>
+
+            <div class="reference-item">
+              Google LLC. (2024). <em>Google Maps Embed API.</em> Google for Developers.
+              https://developers.google.com/maps/documentation/embed/get-started
+            </div>
+
+            <div class="reference-item">
+              World Wide Web Consortium (W3C). (2018). <em>Web Content Accessibility
+              Guidelines (WCAG) 2.1.</em> W3C Recommendation.
+              https://www.w3.org/TR/WCAG21/
+            </div>
+
+            <div class="reference-item">
+              Mozilla Developer Network. (2024). <em>CSS Grid Layout.</em>
+              MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+            </div>
+
+            <div class="reference-item">
+              Mozilla Developer Network. (2024). <em>Using CSS custom properties (variables).</em>
+              MDN Web Docs.
+              https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+            </div>
+
+            <div class="reference-item">
+              WebAIM. (2024). <em>Contrast Checker.</em> WebAIM.
+              https://webaim.org/resources/contrastchecker/
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
+    <a href="#" class="footer-top">Back to top &uarr;</a>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
