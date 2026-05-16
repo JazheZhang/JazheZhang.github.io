@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Jack Zhang</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">JZ<span class="logo-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="process.html">Process</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="page-hero">
+      <div class="container">
+        <h1>Get in Touch</h1>
+        <p>I'm open to internships, collaborations, and conversations about design and product.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- LEFT: Form -->
+          <div>
+            <h2 class="resume-section-title">Send a Message</h2>
+            <form class="contact-form" id="contact-form" action="#" method="post" novalidate>
+
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required aria-required="true" />
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required aria-required="true">
+                  <option value="" disabled selected>Select a subject</option>
+                  <option value="internship">Internship Opportunity</option>
+                  <option value="collaboration">Collaboration</option>
+                  <option value="freelance">Freelance Project</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me what's on your mind..." required aria-required="true"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+          </div>
+
+          <!-- RIGHT: Logo icons + map -->
+          <div class="contact-info">
+            <h2 class="resume-section-title">Find Me Online</h2>
+
+            <!-- Logo-only icon links, no padding cards -->
+            <div class="contact-icons-row">
+
+              <!-- Email -->
+              <!-- Email -->
+                <a href="mailto:Azhejack@gmail.com" class="contact-icon-link" title="Email: Azhejack@gmail.com" aria-label="Send email to Azhejack@gmail.com">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M22 7l-10 7L2 7"/>
+                </svg>
+                </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/jingzhe-zhang-9014a931b" target="_blank" rel="noopener" class="contact-icon-link" title="LinkedIn" aria-label="Visit LinkedIn profile">
+                <!-- LinkedIn SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/JazheZhang" target="_blank" rel="noopener" class="contact-icon-link" title="GitHub" aria-label="Visit GitHub profile">
+                <!-- GitHub SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+              </a>
+
+            </div>
+
+            <!-- Embedded Google Map -->
+            <div class="contact-embed">
+              <div class="embed-label">&#128205; University of Toronto Mississauga</div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2889.0!2d-79.6634!3d43.5489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b47c4b3e7b1d3%3A0x6b5c7b5e8e8e8e8e!2sUniversity%20of%20Toronto%20Mississauga!5e0!3m2!1sen!2sca!4v1"
+                height="240"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Map showing University of Toronto Mississauga campus location"
+              ></iframe>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
+    <a href="#" class="footer-top">Back to top &uarr;</a>
+  </footer>
+
+<script src="js/script.js"></script>

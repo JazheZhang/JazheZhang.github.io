@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squirl Signs | Jack Zhang</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">JZ<span class="logo-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="process.html">Process</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+
+    <div class="page-hero">
+      <div class="container">
+        <a href="portfolio.html" class="back-link">&larr; Back to Portfolio</a>
+        <div class="case-tag">Accessibility Case Competition</div>
+        <h1>Squirl Signs &mdash; ASL Translation App</h1>
+        <p>Designing a mobile-first communication platform for deaf and hard-of-hearing users.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container case-body">
+
+        <div class="case-meta">
+          <div class="case-meta-item">
+            <span class="case-meta-label">My Role</span>
+            <span class="case-meta-value">Research Lead &amp; Product Strategy</span>
+          </div>
+          <div class="case-meta-item">
+            <span class="case-meta-label">Type</span>
+            <span class="case-meta-value">Accessibility Case Competition</span>
+          </div>
+          <div class="case-meta-item">
+            <span class="case-meta-label">Tools</span>
+            <span class="case-meta-value">Figma, Competitive Analysis</span>
+          </div>
+          <div class="case-meta-item">
+            <span class="case-meta-label">Market</span>
+            <span class="case-meta-value">430K+ Canadians</span>
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h2>The Prototype</h2>
+          <p>Below is a full overview of the Figma prototype screens we designed during the competition. The flows cover the splash screen, onboarding for each user type, account creation, the ASL translate feature, live camera translation, and accessibility settings.</p>
+          <div class="case-image-full">
+            <img src="images/squirl-process.png" alt="Squirl Signs Figma prototype overview showing all app screens: splash, onboarding, account creation, translate, live ASL camera, and accessibility settings" />
+          </div>
+        </div>
+
+        <div class="case-section">
+          <h2>The Problem</h2>
+          <p>Over 430,000 Canadians are deaf or hard-of-hearing. The existing tools for real-time communication are fragmented: some require the other person to already know ASL, others are clunky text-based solutions that break natural conversation flow. No single product addressed all three user types that exist in this space: fully Deaf users, hard-of-hearing users, and hearing users communicating with them.</p>
+          <div class="case-quote">"If a product forces a Deaf person to change how they communicate to fit the app, the app has already failed them."</div>
+        </div>
+
+        <div class="case-section">
+          <h2>Our Research Process</h2>
+          <p>We didn't have direct access to deaf or hard-of-hearing users. The project ran during exam season with a one-week timeline, which made recruiting community members impossible. We were transparent about that constraint and designed our research approach around what we could actually do.</p>
+          <div class="case-steps">
+            <div class="case-step">
+              <div class="case-step-num">01</div>
+              <div>
+                <strong>Competitive Analysis</strong>
+                <p>Audited existing ASL apps, captioning tools, and hearing-aid companion apps. The single biggest gap: no existing product handled all three user types in one unified flow.</p>
+              </div>
+            </div>
+            <div class="case-step">
+              <div class="case-step-num">02</div>
+              <div>
+                <strong>Empathy Experiment</strong>
+                <p>Wore noise-cancelling headphones in a busy public environment to experience communication barriers firsthand. Not a substitute for real user research &mdash; but it gave us directional insight that shaped every design decision after it.</p>
+              </div>
+            </div>
+            <div class="case-step">
+              <div class="case-step-num">03</div>
+              <div>
+                <strong>Community Research</strong>
+                <p>Watched videos and read content from deaf creators and advocates to understand how the community talks about existing tools, what frustrates them, and what they actually want from technology.</p>
+              </div>
+            </div>
+            <div class="case-step">
+              <div class="case-step-num">04</div>
+              <div>
+                <strong>User Segmentation</strong>
+                <p>Defined three distinct profiles: fully Deaf, hard-of-hearing, and hearing allies. Each has different onboarding needs, trust thresholds, and feature priorities.</p>
+              </div>
+            </div>
+          </div>
+          <div class="case-quote">"Wearing noise-cancelling headphones in a crowded area wasn't just a research exercise. It made us realize the problem wasn't just hearing &mdash; it was the feeling of being cut off from a world that wasn't designed with you in mind."</div>
+        </div>
+
+        <div class="case-section">
+          <h2>The Hardest Decision</h2>
+          <p>The live ASL camera translation feature was the most contested design decision on the team. It touched three separate risk areas simultaneously.</p>
+          <div class="case-steps">
+            <div class="case-step">
+              <div class="case-step-num" style="background:rgba(26,63,168,0.08);">!</div>
+              <div>
+                <strong>Scope Risk</strong>
+                <p>Real-time ASL recognition requires significant ML infrastructure. As a startup, committing to this feature in v1 could sink the roadmap before the product found product-market fit.</p>
+              </div>
+            </div>
+            <div class="case-step">
+              <div class="case-step-num" style="background:rgba(26,63,168,0.08);">!</div>
+              <div>
+                <strong>Accuracy Risk</strong>
+                <p>An ASL translation that gets it wrong doesn't just frustrate users &mdash; it can lead to genuine miscommunication for people who rely on it in important situations.</p>
+              </div>
+            </div>
+            <div class="case-step">
+              <div class="case-step-num" style="background:rgba(26,63,168,0.08);">!</div>
+              <div>
+                <strong>Trust Risk</strong>
+                <p>Deaf users have often been burned by accessibility technology that overpromises. If the product launches with a feature that underperforms, it loses the community's trust entirely.</p>
+              </div>
+            </div>
+          </div>
+          <p>Our recommendation: ship a manual input translation mode first to build trust and gather real usage data. Position the live camera feature as a clearly-labelled beta with explicit accuracy caveats.</p>
+        </div>
+
+        <div class="case-section">
+          <h2>What I'd Do Differently</h2>
+          <p>If I had two weeks instead of one during exam season, I would have prioritized recruiting even three people from the deaf or hard-of-hearing community for short interviews. The specific assumption I was most afraid was wrong: whether users would actually trust an AI translation enough to use it in situations that matter &mdash; a medical appointment, a job interview, a conversation with a landlord.</p>
+          <p>On the commercial side, I'd have explored the AODA compliance angle more deeply. Many Canadian employers are legally required to provide accessible communication tools. Squirl Signs could be sold to organizations as a compliance solution, opening an enterprise revenue stream alongside the consumer app.</p>
+        </div>
+
+        <div class="case-nav">
+          <a href="portfolio.html" class="btn btn-outline">&larr; Back to Portfolio</a>
+          <a href="match-case.html" class="btn btn-primary">Next: Match &rarr;</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
+    <a href="#" class="footer-top">Back to top &uarr;</a>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
