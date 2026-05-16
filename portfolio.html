@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Jack Zhang</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">JZ<span class="logo-dot">.</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">&#9776;</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="process.html">Process</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle">🌙 Dark</button>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="page-hero">
+      <div class="container">
+        <h1>My Work</h1>
+        <p>Case competitions and projects — click any card to read the full story.</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="portfolio-grid portfolio-grid-2col">
+
+          <!-- Squirl Signs -->
+          <a href="squirl-case.html" class="portfolio-card portfolio-card-link">
+            <div class="portfolio-card-img portfolio-card-img-tall">
+              <div class="portfolio-card-overlay">
+                <span class="overlay-cta">Read Case Study &rarr;</span>
+              </div>
+              <img src="images/squirl-cover.png" alt="Squirl Signs app — ASL translation mobile app splash screen showing the squirrel logo and tagline Bridging every conversation" />
+            </div>
+            <div class="portfolio-card-body">
+              <div class="portfolio-card-tag">Accessibility Case Comp</div>
+              <h3>Squirl Signs &mdash; ASL Translation App</h3>
+              <p>
+                Led research and product strategy for a startup targeting 430,000+ deaf
+                and hard-of-hearing Canadians. Our empathy experiment &mdash; wearing
+                noise-cancelling headphones in a busy public space &mdash; shaped every
+                design decision we made.
+              </p>
+              <div class="portfolio-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">UX Research</span>
+                <span class="tag">Accessibility</span>
+                <span class="tag">Prototyping</span>
+              </div>
+              <span class="card-read-more">Read full case study &rarr;</span>
+            </div>
+          </a>
+
+          <!-- Match -->
+          <a href="match-case.html" class="portfolio-card portfolio-card-link">
+            <div class="portfolio-card-img portfolio-card-img-tall">
+              <div class="portfolio-card-overlay">
+                <span class="overlay-cta">Read Case Study &rarr;</span>
+              </div>
+              <img src="images/match-cover.png" alt="Match app — dark green splash screen with tagline: Match with someone who has been there" />
+            </div>
+            <div class="portfolio-card-body">
+              <div class="portfolio-card-tag">Designathon &mdash; 4 Hours</div>
+              <h3>Match &mdash; First-Year Mentorship App</h3>
+              <p>
+                Scoped and prototyped a B2B mentorship platform for universities in
+                a 4-hour sprint. Framed first-year attrition as a tuition revenue problem
+                and designed a peer-matching solution that scales without adding headcount.
+              </p>
+              <div class="portfolio-tags">
+                <span class="tag">Figma</span>
+                <span class="tag">Prototyping</span>
+                <span class="tag">B2B Strategy</span>
+                <span class="tag">User Flow</span>
+              </div>
+              <span class="card-read-more">Read full case study &rarr;</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Jack Zhang &mdash; Built with HTML, CSS &amp; JavaScript.</p>
+    <a href="#" class="footer-top">Back to top &uarr;</a>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
